@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system">System</string>
+    <string name="battery_saver">Battery saver</string>
+    <string name="theme">Theme</string>
+    <string name="primary_color">Primary color</string>
+    <string name="md3">Material Design 3</string>
+    <string name="md3_pref_summary">Use Android 12 look and feel</string>
+    <string name="using_android_12_dynamic_colors">Using Android 12\'s dynamic colors</string>
+    <string name="md3_not_applied">Material Design 3 theme is not applied</string>
+    <string name="custom_colors_m3">Use custom colors for Material 3 theme</string>
+</resources>

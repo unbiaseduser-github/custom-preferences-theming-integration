@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme.Material3.Base.WithPreferences" parent="AppTheme.Material3.Base">
+        <item name="android:textAppearanceListItem">@style/TextAppearance.Preference.Title</item>
+        <item name="android:textAppearanceListItemSecondary">@style/TextAppearance.Preference.ColorSecondary</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme.Material3</item>
+        <item name="preferenceStyle">@style/Preference.Material3</item>
+        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference.Material3</item>
+        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference.Material3</item>
+        <item name="dropdownPreferenceStyle">@style/Preference.DropDown.Material</item>
+        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference.Material3</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category.Material3</item>
+        <item name="preferenceCategoryTitleTextAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="preferenceCategoryTitleTextColor">?attr/colorPrimary</item>
+        <item name="preferenceFragmentCompatStyle">@style/PreferenceFragment.Material</item>
+        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList.Material</item>
+        <item name="preferenceFragmentStyle">@style/PreferenceFragment.Material</item>
+        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen.Material3</item>
+        <item name="seekBarPreferenceStyle">@style/Preference.SeekBarPreference.Material</item>
+        <item name="switchPreferenceStyle">@style/Preference.SwitchPreference.Material3</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat.Material3</item>
+    </style>
+
+    <style name="AppTheme.Material3.DynamicColors.WithPreferences" parent="AppTheme.Material3.Base.WithPreferences"/>
+
+    <style name="AppTheme.Material3.CustomColors.WithPreferences" parent="AppTheme.Material3.Base.WithPreferences">
+        <item name="colorPrimary">?attr/m3ColorPrimary</item>
+        <item name="colorOnPrimary">?attr/m3ColorOnPrimary</item>
+        <item name="colorPrimaryContainer">?attr/m3ColorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">?attr/m3ColorOnPrimaryContainer</item>
+        <item name="colorSecondary">?attr/m3ColorSecondary</item>
+        <item name="colorOnSecondary">?attr/m3ColorOnSecondary</item>
+        <item name="colorSecondaryContainer">?attr/m3ColorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">?attr/m3ColorOnSecondaryContainer</item>
+        <item name="colorTertiary">?attr/m3ColorTertiary</item>
+        <item name="colorOnTertiary">?attr/m3ColorOnTertiary</item>
+        <item name="colorTertiaryContainer">?attr/m3ColorTertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">?attr/m3ColorOnTertiaryContainer</item>
+        <item name="colorError">?attr/m3ColorError</item>
+        <item name="colorOnError">?attr/m3ColorOnError</item>
+        <item name="colorErrorContainer">?attr/m3ColorErrorContainer</item>
+        <item name="colorOnErrorContainer">?attr/m3ColorOnErrorContainer</item>
+        <item name="android:colorBackground">?attr/m3ColorBackground</item>
+        <item name="colorOnBackground">?attr/m3ColorOnBackground</item>
+        <item name="colorSurface">?attr/m3ColorSurface</item>
+        <item name="colorOnSurface">?attr/m3ColorOnSurface</item>
+        <item name="colorSurfaceVariant">?attr/m3ColorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">?attr/m3ColorOnSurfaceVariant</item>
+        <item name="colorOutline">?attr/m3ColorOutline</item>
+    </style>
+
+    <style name="AppTheme.Material3.Fallback.WithPreferences" parent="AppTheme.Material3.Base.WithPreferences">
+        <item name="colorPrimary">@color/m3ColorPrimary_blue</item>
+        <item name="colorOnPrimary">@color/m3ColorOnPrimary_blue</item>
+        <item name="colorPrimaryContainer">@color/m3ColorPrimaryContainer_blue</item>
+        <item name="colorOnPrimaryContainer">@color/m3ColorOnPrimaryContainer_blue</item>
+        <item name="colorSecondary">@color/m3ColorSecondary_blue</item>
+        <item name="colorOnSecondary">@color/m3ColorOnSecondary_blue</item>
+        <item name="colorSecondaryContainer">@color/m3ColorSecondaryContainer_blue</item>
+        <item name="colorOnSecondaryContainer">@color/m3ColorOnSecondaryContainer_blue</item>
+        <item name="colorTertiary">@color/m3ColorTertiary_blue</item>
+        <item name="colorOnTertiary">@color/m3ColorOnTertiary_blue</item>
+        <item name="colorTertiaryContainer">@color/m3ColorTertiaryContainer_blue</item>
+        <item name="colorOnTertiaryContainer">@color/m3ColorOnTertiaryContainer_blue</item>
+        <item name="colorError">@color/m3ColorError_blue</item>
+        <item name="colorOnError">@color/m3ColorOnError_blue</item>
+        <item name="colorErrorContainer">@color/m3ColorErrorContainer_blue</item>
+        <item name="colorOnErrorContainer">@color/m3ColorOnErrorContainer_blue</item>
+        <item name="android:colorBackground">@color/m3ColorBackground_blue</item>
+        <item name="colorOnBackground">@color/m3ColorOnBackground_blue</item>
+        <item name="colorSurface">@color/m3ColorSurface_blue</item>
+        <item name="colorOnSurface">@color/m3ColorOnSurface_blue</item>
+        <item name="colorSurfaceVariant">@color/m3ColorSurfaceVariant_blue</item>
+        <item name="colorOnSurfaceVariant">@color/m3ColorOnSurfaceVariant_blue</item>
+        <item name="colorOutline">@color/m3ColorOutline_blue</item>
+    </style>
+
+    <style name="Preference.Material3" parent="Preference.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+    </style>
+
+    <style name="Preference.Category.Material3" parent="Preference.Category.Material">
+        <item name="android:layout">@layout/m3_preference_category</item>
+        <item name="allowDividerAbove">false</item>
+    </style>
+
+    <style name="Preference.CheckBoxPreference.Material3" parent="Preference.CheckBoxPreference.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+    </style>
+
+    <style name="Preference.DialogPreference.Material3" parent="Preference.DialogPreference.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+    </style>
+
+    <style name="Preference.DialogPreference.EditTextPreference.Material3" parent="Preference.DialogPreference.EditTextPreference.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+    </style>
+
+    <style name="Preference.PreferenceScreen.Material3" parent="Preference.PreferenceScreen.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+    </style>
+
+    <style name="Preference.SwitchPreference.Material3" parent="Preference.SwitchPreference.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+    </style>
+
+    <style name="Preference.SwitchPreferenceCompat.Material3" parent="Preference.SwitchPreferenceCompat.Material">
+        <item name="android:layout">@layout/m3_preference</item>
+        <item name="android:widgetLayout">@layout/m3_preference_widget_material_switch</item>
+    </style>
+
+    <style name="TextAppearance.Preference.Title" parent="TextAppearance.Material3.TitleMedium"
+        tools:ignore="PrivateResource">
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@string/m3_ref_typeface_brand_regular</item>
+        <item name="fontFamily">@string/m3_ref_typeface_brand_regular</item>
+    </style>
+
+    <style name="TextAppearance.Preference.ColorSecondary" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+</resources>
