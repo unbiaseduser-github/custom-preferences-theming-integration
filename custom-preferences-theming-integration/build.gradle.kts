@@ -79,7 +79,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
-    api("com.github.unbiaseduser.custom-preferences:custom-preferences:2.0.1")
+    api("com.github.unbiaseduser.custom-preferences:custom-preferences:2.0.2")
     api(project(":theming-preference-integration"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
