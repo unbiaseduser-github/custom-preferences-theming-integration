@@ -7,11 +7,32 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.core.content.edit
+import androidx.core.util.Consumer
 import androidx.preference.PreferenceDataStore
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
 import com.sixtyninefourtwenty.theming.preferences.internal.prefValue
+
+/**
+ * Copy preferences from the internal preferences storage used by [ThemingPreferenceFragment].
+ *
+ * Can be used to migrate from [ThemingPreferenceFragment] to individual preferences added to
+ * custom preference fragments.
+ */
+fun copyFromDefaultThemingPreferences(
+    context: Context,
+    copyMd3: Consumer<Boolean>,
+    copyThemeColor: Consumer<ThemeColor>,
+    copyLightDarkMode: Consumer<LightDarkMode>,
+    copyUseM3CustomColorThemeOnAndroid12: Consumer<Boolean>
+) {
+    val def = DefaultThemingPreferences(context)
+    copyMd3.accept(def.md3)
+    copyThemeColor.accept(def.themeColor)
+    copyLightDarkMode.accept(def.lightDarkMode)
+    copyUseM3CustomColorThemeOnAndroid12.accept(def.useM3CustomColorThemeOnAndroid12)
+}
 
 @JvmName("create")
 fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
