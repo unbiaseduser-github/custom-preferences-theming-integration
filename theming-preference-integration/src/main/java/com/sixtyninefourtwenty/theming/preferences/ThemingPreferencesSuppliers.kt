@@ -29,7 +29,7 @@ fun copyFromDefaultThemingPreferences(
     copyLightDarkMode: Consumer<LightDarkMode>,
     copyUseM3CustomColorThemeOnAndroid12: Consumer<Boolean>
 ) {
-    val def = DefaultThemingPreferences(context)
+    val def = DefaultThemingPreferences.getInstance(context)
     copyMd3.accept(def.md3)
     copyThemeColor.accept(def.themeColor)
     copyLightDarkMode.accept(def.lightDarkMode)

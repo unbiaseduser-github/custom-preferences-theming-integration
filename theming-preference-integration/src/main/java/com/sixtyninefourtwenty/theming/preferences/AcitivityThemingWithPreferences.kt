@@ -28,5 +28,5 @@ fun Activity.applyThemingWithPreferences(
     material2ThemeStyleRes,
     material3CustomColorsThemeStyleRes,
     material3DynamicColorsThemeStyleRes,
-    preferencesSupplier ?: DefaultThemingPreferences(this)
+    preferencesSupplier ?: DefaultThemingPreferences.getInstance(this)
 )

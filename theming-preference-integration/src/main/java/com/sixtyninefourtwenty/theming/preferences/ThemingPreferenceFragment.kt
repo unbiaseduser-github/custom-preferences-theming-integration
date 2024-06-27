@@ -13,7 +13,7 @@ import com.sixtyninefourtwenty.custompreferences.AbstractCustomDialogPreference
 class ThemingPreferenceFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        val prefs = DefaultThemingPreferences(requireContext())
+        val prefs = DefaultThemingPreferences.getInstance(requireContext())
         preferenceManager.preferenceDataStore = prefs
         preferenceScreen = preferenceManager.createPreferenceScreen(requireContext()).apply {
             addThemingPreferences(requireActivity(), prefs.lightDarkMode, prefs.md3, prefs.useM3CustomColorThemeOnAndroid12)

@@ -2,12 +2,13 @@ package com.sixtyninefourtwenty.theming.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.annotation.MainThread
 import androidx.core.content.edit
 import androidx.preference.PreferenceDataStore
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 
-internal class DefaultThemingPreferences(
+internal class DefaultThemingPreferences private constructor(
     context: Context
 ) : PreferenceDataStore(), ThemingPreferencesSupplier {
 
@@ -76,6 +77,14 @@ internal class DefaultThemingPreferences(
         const val LIGHT_DARK_MODE_KEY = "light_dark_mode"
         const val PRIMARY_COLOR_KEY = "primary_color"
         const val USE_MD3_CUSTOM_COLORS_ON_ANDROID_12 = "md3_cc_a12"
+
+        private var instance: DefaultThemingPreferences? = null
+        @MainThread //not thread safe
+        fun getInstance(context: Context) = instance ?: run {
+            val newInstance = DefaultThemingPreferences(context)
+            instance = newInstance
+            newInstance
+        }
     }
 
 }
