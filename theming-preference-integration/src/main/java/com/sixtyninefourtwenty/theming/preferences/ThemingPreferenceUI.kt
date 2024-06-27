@@ -53,7 +53,6 @@ fun PreferenceGroup.addM3Preference(
         key = prefKey
         title = activity.getString(R.string.md3)
         summary = activity.getString(R.string.md3_pref_summary)
-        setDefaultValue(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
         setOnPreferenceChangeListener { _, _ ->
             activity.recreate()
             true
@@ -102,7 +101,6 @@ fun PreferenceGroup.addLightDarkModePreference(
             LightDarkMode.BATTERY -> R.drawable.battery_saver
             LightDarkMode.SYSTEM -> R.drawable.android
         })
-        setDefaultValue(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) "system" else "light")
         setOnPreferenceChangeListener { _, _ ->
             activity.recreate()
             true
@@ -128,7 +126,6 @@ fun PreferenceGroup.addUseMD3CustomColorsThemeOnAndroid12Preference(
     addPreference(SwitchPreferenceCompat(activity).apply {
         key = prefKey
         title = activity.getString(R.string.custom_colors_m3)
-        setDefaultValue(false)
         setOnPreferenceChangeListener { _, _ ->
             activity.recreate()
             true
@@ -170,7 +167,6 @@ fun PreferenceGroup.addThemeColorPreference(
         key = prefKey
         title = activity.getString(R.string.primary_color)
         setIcon(R.drawable.palette)
-        setDefaultValue("#3385ff")
         if (prefColors != null) {
             setAvailableColors(prefColors)
         } else {
