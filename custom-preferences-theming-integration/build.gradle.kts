@@ -11,6 +11,7 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
+            withJavadocJar()
         }
     }
 
@@ -53,6 +54,7 @@ afterEvaluate {
                 pom {
                     name.set("custom-preferences-theming-integration")
                     description.set("Integration of custom preferences' styling with my theming library")
+                    url.set("https://github.com/unbiaseduser-github/library-integrations")
 
                     licenses {
                         license {
@@ -68,6 +70,12 @@ afterEvaluate {
                             email.set("quangtrung02hn16@gmail.com")
                             url.set("https://github.com/unbiaseduser")
                         }
+                    }
+
+                    scm {
+                        connection.set("scm:git:git://github.com/unbiaseduser-github/library-integrations.git")
+                        developerConnection.set("scm:git:ssh://github.com:unbiaseduser-github/library-integrations.git")
+                        url.set("https://github.com/unbiaseduser-github/library-integrations/tree/master")
                     }
                 }
             }
