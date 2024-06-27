@@ -12,13 +12,6 @@ import androidx.preference.PreferenceGroup
 import com.sixtyninefourtwenty.theming.applyTheming
 
 /**
- * Apply theming to an [Activity] according to settings.
- * @param material2ThemeStyleRes Resource ID of your theme that extends
- * [com.sixtyninefourtwenty.theming.R.style.AppTheme_Material2].
- * @param material3CustomColorsThemeStyleRes Resource ID of your theme that extends
- * [R.style.AppTheme_Material3_CustomColors_WithPreferences].
- * @param material3DynamicColorsThemeStyleRes Resource ID of your theme that extends
- * [R.style.AppTheme_Material3_DynamicColors_WithPreferences].
  * @param preferencesSupplier Preference storage to use if available. If
  * you're using [PreferenceGroup.addThemingPreferences] on a [PreferenceFragmentCompat],
  * make sure that the supplier is linked to whatever [SharedPreferences] or [PreferenceDataStore]

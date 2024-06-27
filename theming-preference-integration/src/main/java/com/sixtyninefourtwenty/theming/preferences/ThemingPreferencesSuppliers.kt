@@ -3,12 +3,14 @@
 
 package com.sixtyninefourtwenty.theming.preferences
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.core.content.edit
 import androidx.core.util.Consumer
 import androidx.preference.PreferenceDataStore
+import androidx.preference.PreferenceGroup
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
@@ -34,6 +36,11 @@ fun copyFromDefaultThemingPreferences(
     copyUseM3CustomColorThemeOnAndroid12.accept(def.useM3CustomColorThemeOnAndroid12)
 }
 
+/**
+ * Create a [ThemingPreferencesSupplier] that uses the library's internal keys to store preferences.
+ * When this is used in [Activity.applyThemingWithPreferences], you can use your own preferences
+ * fragment with [PreferenceGroup.addThemingPreferences] without specifying custom keys.
+ */
 @JvmName("create")
 fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
     override var md3: Boolean
@@ -74,6 +81,9 @@ fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : 
 
 }
 
+/**
+ * @see SharedPreferences.toThemingPreferencesSupplier
+ */
 @JvmName("create")
 fun PreferenceDataStore.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
     override var md3: Boolean
