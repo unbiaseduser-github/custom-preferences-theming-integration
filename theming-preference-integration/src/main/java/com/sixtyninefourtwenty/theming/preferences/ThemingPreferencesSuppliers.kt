@@ -11,6 +11,7 @@ import androidx.core.content.edit
 import androidx.core.util.Consumer
 import androidx.preference.PreferenceDataStore
 import androidx.preference.PreferenceGroup
+import com.sixtyninefourtwenty.theming.applyTheming
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
@@ -38,7 +39,7 @@ fun copyFromDefaultThemingPreferences(
 
 /**
  * Create a [ThemingPreferencesSupplier] that uses the library's internal keys to store preferences.
- * When this is used in [Activity.applyThemingWithPreferences], you can use your own preferences
+ * When this is used in [Activity.applyTheming], you can use your own preferences
  * fragment with [PreferenceGroup.addThemingPreferences] without specifying custom keys.
  */
 @JvmName("create")

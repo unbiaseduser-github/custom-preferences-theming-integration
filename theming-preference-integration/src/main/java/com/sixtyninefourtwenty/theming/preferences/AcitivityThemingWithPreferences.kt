@@ -19,14 +19,36 @@ import com.sixtyninefourtwenty.theming.applyTheming
  * @see [Activity.applyTheming]
  */
 @JvmOverloads
+@Deprecated(
+    message = "This method's name is confusing, and the functionality that isn't already provided by" +
+            " Activity.applyTheming is better expressed by a method that doesn't take a preferences" +
+            " supplier. Instead, call applyThemingWithDefaultPreferences if the default preference" +
+            " supplier used by ThemingPreferenceFragment is desired or applyTheming if a custom preference" +
+            " supplier is available.",
+    replaceWith = ReplaceWith("applyThemingWithDefaultPreferences or applyTheming")
+)
 fun Activity.applyThemingWithPreferences(
     @StyleRes material2ThemeStyleRes: Int,
     @StyleRes material3CustomColorsThemeStyleRes: Int,
     @StyleRes material3DynamicColorsThemeStyleRes: Int,
-    preferencesSupplier: ThemingPreferencesSupplier? = null
+    preferencesSupplier: ImmutableThemingPreferencesSupplier? = null
 ) = applyTheming(
     material2ThemeStyleRes,
     material3CustomColorsThemeStyleRes,
     material3DynamicColorsThemeStyleRes,
     preferencesSupplier ?: DefaultThemingPreferences.getInstance(this)
+)
+
+/**
+ * Call [Activity.applyTheming] with the default storage used by [ThemingPreferenceFragment].
+ */
+fun Activity.applyThemingWithDefaultPreferences(
+    @StyleRes material2ThemeStyleRes: Int,
+    @StyleRes material3CustomColorsThemeStyleRes: Int,
+    @StyleRes material3DynamicColorsThemeStyleRes: Int
+) = applyTheming(
+    material2ThemeStyleRes,
+    material3CustomColorsThemeStyleRes,
+    material3DynamicColorsThemeStyleRes,
+    DefaultThemingPreferences.getInstance(this)
 )
