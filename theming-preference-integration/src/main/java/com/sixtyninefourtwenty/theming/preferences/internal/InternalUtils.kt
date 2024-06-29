@@ -1,9 +1,13 @@
 package com.sixtyninefourtwenty.theming.preferences.internal
 
+import android.app.Activity
 import android.content.Context
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
+import com.sixtyninefourtwenty.theming.preferences.DefaultThemingPreferences
 import com.sixtyninefourtwenty.theming.preferences.R
 
 internal fun ThemeColor.getColorInt(context: Context): Int {
@@ -26,3 +30,22 @@ internal val LightDarkMode.prefValue: String
             LightDarkMode.SYSTEM -> "system"
         }
     }
+
+internal fun PredefinedColorPickerPreference.setupCommon(
+    activity: Activity,
+    prefKey: String,
+    @ColorInt prefColors: IntArray?
+) {
+    key = prefKey
+    title = activity.getString(R.string.primary_color)
+    setIcon(R.drawable.palette)
+    if (prefColors != null) {
+        setAvailableColors(prefColors)
+    } else {
+        setAvailableColorsArrayRes(R.array.theme_color_preference_available_colors)
+    }
+    setOnPreferenceChangeListener { _, _ ->
+        activity.recreate()
+        true
+    }
+}

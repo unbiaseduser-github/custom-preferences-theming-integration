@@ -9,6 +9,7 @@
     <string name="md3">Material Design 3</string>
     <string name="md3_pref_summary">Use Android 12 look and feel</string>
     <string name="using_android_12_dynamic_colors">Using Android 12\'s dynamic colors</string>
+    <string name="using_md3">Using Material Design 3 theme</string>
     <string name="md3_not_applied">Material Design 3 theme is not applied</string>
     <string name="custom_colors_m3">Use custom colors for Material 3 theme</string>
 </resources>

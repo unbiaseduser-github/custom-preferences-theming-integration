@@ -12,6 +12,7 @@ import androidx.core.util.Consumer
 import androidx.preference.PreferenceDataStore
 import androidx.preference.PreferenceGroup
 import com.sixtyninefourtwenty.theming.applyTheming
+import com.sixtyninefourtwenty.theming.applyThemingWithoutM3CustomColors
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
@@ -38,12 +39,12 @@ fun copyFromDefaultThemingPreferences(
 }
 
 /**
- * Create a [ThemingPreferencesSupplier] that uses the library's internal keys to store preferences.
- * When this is used in [Activity.applyTheming], you can use your own preferences
- * fragment with [PreferenceGroup.addThemingPreferences] without specifying custom keys.
+ * Create a [ThemingPreferencesSupplierWithoutM3CustomColor] that uses the library's internal keys to store preferences.
+ * When this is used in [Activity.applyThemingWithoutM3CustomColors], you can use your own preferences
+ * fragment with [PreferenceGroup.addThemingPreferencesWithoutM3CustomColor] without specifying custom keys.
  */
-@JvmName("create")
-fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
+@JvmName("createWithoutM3CustomColor")
+fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: Context) = object : ThemingPreferencesSupplierWithoutM3CustomColor {
     override var md3: Boolean
         get() = getBoolean(
             DefaultThemingPreferences.MD3_KEY,
@@ -73,6 +74,23 @@ fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : 
         set(value) {
             edit { putString(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY, value.prefValue) }
         }
+}
+
+/**
+ * Create a [ThemingPreferencesSupplier] that uses the library's internal keys to store preferences.
+ * When this is used in [Activity.applyTheming], you can use your own preferences
+ * fragment with [PreferenceGroup.addThemingPreferences] without specifying custom keys.
+ */
+@JvmName("create")
+fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
+
+    private val delegateWithoutM3CustomColor = toThemingPreferencesSupplierWithoutM3CustomColor(context)
+
+    override var md3: Boolean by delegateWithoutM3CustomColor::md3
+
+    override var themeColor: ThemeColor by delegateWithoutM3CustomColor::themeColor
+
+    override var lightDarkMode: LightDarkMode by delegateWithoutM3CustomColor::lightDarkMode
 
     override var useM3CustomColorThemeOnAndroid12: Boolean
         get() = getBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, false)
@@ -83,10 +101,11 @@ fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : 
 }
 
 /**
- * @see SharedPreferences.toThemingPreferencesSupplier
+ * @see SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor
  */
-@JvmName("create")
-fun PreferenceDataStore.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
+@JvmName("createWithoutM3CustomColor")
+fun PreferenceDataStore.toThemingPreferencesSupplierWithoutM3CustomColor(context: Context) = object : ThemingPreferencesSupplierWithoutM3CustomColor {
+
     override var md3: Boolean
         get() = getBoolean(DefaultThemingPreferences.MD3_KEY, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
         set(value) = putBoolean(DefaultThemingPreferences.MD3_KEY, value)
@@ -106,6 +125,22 @@ fun PreferenceDataStore.toThemingPreferencesSupplier(context: Context) = object 
             })
         }
         set(value) = putString(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY, value.prefValue)
+
+}
+
+/**
+ * @see SharedPreferences.toThemingPreferencesSupplier
+ */
+@JvmName("create")
+fun PreferenceDataStore.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
+
+    private val delegateWithoutM3CustomColor = toThemingPreferencesSupplierWithoutM3CustomColor(context)
+
+    override var md3: Boolean by delegateWithoutM3CustomColor::md3
+
+    override var themeColor: ThemeColor by delegateWithoutM3CustomColor::themeColor
+
+    override var lightDarkMode: LightDarkMode by delegateWithoutM3CustomColor::lightDarkMode
 
     override var useM3CustomColorThemeOnAndroid12: Boolean
         get() = getBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, false)

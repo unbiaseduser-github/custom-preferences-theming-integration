@@ -13,10 +13,15 @@ import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.applyTheming
+import com.sixtyninefourtwenty.theming.preferences.internal.setupCommon
 
 /**
  * Calls [addM3Preference], [addLightDarkModePreference], [addUseMD3CustomColorsThemeOnAndroid12Preference]
  * and [addThemeColorPreference] in that exact order.
+ *
+ * Note that this only supports apps supporting all 3 themes: M2, M3 custom colors and M3 dynamic colors.
+ * If your app only supports M2 and M3 dynamic colors, do *not* use this - use [addThemingPreferencesWithoutM3CustomColor]
+ * instead. Calling this in the above scenario results in undefined behavior.
  */
 @JvmOverloads
 fun PreferenceGroup.addThemingPreferences(
@@ -40,6 +45,10 @@ fun PreferenceGroup.addThemingPreferences(
 
 /**
  * Adds a [SwitchPreferenceCompat].
+ *
+ * Note that this only supports apps supporting all 3 themes: M2, M3 custom colors and M3 dynamic colors.
+ * If your app only supports M2 and M3 dynamic colors, do *not* use this - use [addM3PreferenceWithoutM3CustomColor]
+ * instead. Calling this in the above scenario results in undefined behavior.
  * @param prefKey Key to use for the preference. Default is an internal key the library
  * implementations of [ThemingPreferencesSupplier] use - if you call [Activity.applyTheming]
  * with one such implementation, you don't need this parameter.
@@ -62,6 +71,10 @@ fun PreferenceGroup.addM3Preference(
 
 /**
  * Adds a [ListPreference].
+ *
+ * Note that this only supports apps supporting all 3 themes: M2, M3 custom colors and M3 dynamic colors.
+ * If your app only supports M2 and M3 dynamic colors, do *not* use this - use [addLightDarkModePreferenceWithoutM3CustomColor]
+ * instead. Calling this in the above scenario results in undefined behavior.
  * @param prefKey Key to use for the preference. Default is an internal key the library
  * implementations of [ThemingPreferencesSupplier] use - if you call [Activity.applyTheming]
  * with one such implementation, you don't need this parameter.
@@ -142,6 +155,10 @@ fun PreferenceGroup.addUseMD3CustomColorsThemeOnAndroid12Preference(
 
 /**
  * Adds a [PredefinedColorPickerPreference].
+ *
+ * Note that this only supports apps supporting all 3 themes: M2, M3 custom colors and M3 dynamic colors.
+ * If your app only supports M2 and M3 dynamic colors, do *not* use this - use [addThemeColorPreferenceWithoutM3CustomColor]
+ * instead. Calling this in the above scenario results in undefined behavior.
  * @param prefKey Key to use for the preference. Default is an internal key the library
  * implementations of [ThemingPreferencesSupplier] use - if you call [Activity.applyTheming]
  * with one such implementation, you don't need this parameter.
@@ -164,18 +181,7 @@ fun PreferenceGroup.addThemeColorPreference(
     @ColorInt prefColors: IntArray? = null
 ) {
     addPreference(PredefinedColorPickerPreference(activity).apply {
-        key = prefKey
-        title = activity.getString(R.string.primary_color)
-        setIcon(R.drawable.palette)
-        if (prefColors != null) {
-            setAvailableColors(prefColors)
-        } else {
-            setAvailableColorsArrayRes(R.array.theme_color_preference_available_colors)
-        }
-        setOnPreferenceChangeListener { _, _ ->
-            activity.recreate()
-            true
-        }
+        setupCommon(activity, prefKey, prefColors)
 
         if (!alwaysEnabledOnAndroid12) {
             if (md3 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
