@@ -85,7 +85,7 @@ afterEvaluate {
 
 dependencies {
 
-    api("com.github.unbiaseduser-github:theming:2.1.0")
+    api("com.github.unbiaseduser-github:theming:2.2.0")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
