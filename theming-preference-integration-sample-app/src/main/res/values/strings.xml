@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Theming Sample App</string>
+    <string name="md3">Material Design 3</string>
+    <string name="theme">Theme</string>
+    <string name="primary_color">Primary color</string>
+    <string name="use_custom_colors_in_material_3_theme">Use custom colors in Material 3 theme</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="battery_saver">Battery saver</string>
+    <string name="system">System</string>
+    <string name="blue">Blue</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="purple">Purple</string>
+    <string name="orange">Orange</string>
+    <string name="pink">Pink</string>
+    <string name="info">Info</string>
+    <string name="kotlin">Kotlin</string>
+    <string name="java">Java</string>
+    <string name="custom_prefs_sample_info">This activity demonstrates the ability to use a custom storage for storing theming preferences. The activity uses a non-persistent storage - when the app is closed, its settings are reset.</string>
+    <string name="appearance_settings">Appearance settings</string>
+    <string name="your_category">Your category</string>
+    <string name="your_preference">Your preference</string>
+    <string name="inbuilt_fragment_sample_info">This activity demonstrates using the library\'s inbuilt preference fragment - ThemingPreferenceFragment. Just use it like any other fragment.</string>
+    <string name="inbuilt_prefs_sample_info">This activity demonstrates the ability to use the library\'s individual preference items that correspond to ThemingPreferencesSupplier\'s properties.</string>
+    <string name="activity_with_library_inbuilt_fragment">Activity with library\'s inbuilt fragment</string>
+    <string name="activity_with_library_individual_inbuilt_preferences">Activity with library\'s individual inbuilt preferences</string>
+    <string name="activity_with_non_persistent_theming">Activity with non-persistent theming</string>
+</resources>
