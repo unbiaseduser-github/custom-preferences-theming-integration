@@ -1,0 +1,1 @@
+Integration libraries, each one bridging two or more different libraries. See each library's readme for details.
