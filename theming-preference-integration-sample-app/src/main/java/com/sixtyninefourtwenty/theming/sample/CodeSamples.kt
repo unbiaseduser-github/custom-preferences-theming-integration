@@ -5,8 +5,7 @@ val INBUILT_FRAGMENT_KOTLIN_SAMPLE = """
     class YourActivity : AppCompatActivity() {
         
         override fun onCreate(savedInstanceState: Bundle?) {
-            //Use the default value for preferencesSupplier parameter. Make sure you have `preference-integration` extension installed.
-            applyThemingWithPreferences(
+            applyThemingWithDefaultPreferences(
                 ...
             )
         }
@@ -19,8 +18,7 @@ val INBUILT_FRAGMENT_JAVA_SAMPLE = """
     public class YourActivity extends AppCompatActivity {
        
        protected void onCreate(Bundle savedInstanceState) {
-           //Use the default value for preferencesSupplier parameter. Make sure you have `preference-integration` extension installed.
-           ActivityThemingWithPreferences.applyThemingWithPreferences(
+           ActivityThemingWithPreferences.applyThemingWithDefaultPreferences(
                this,
                ...
            )
