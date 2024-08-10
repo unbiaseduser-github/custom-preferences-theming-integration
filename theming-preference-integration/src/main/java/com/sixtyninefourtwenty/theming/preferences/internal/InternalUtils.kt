@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
-import com.sixtyninefourtwenty.theming.preferences.DefaultThemingPreferences
 import com.sixtyninefourtwenty.theming.preferences.R
 
 internal fun ThemeColor.getColorInt(context: Context): Int {
@@ -32,18 +31,16 @@ internal val LightDarkMode.prefValue: String
     }
 
 internal fun PredefinedColorPickerPreference.setupCommon(
+    color: Int,
     activity: Activity,
     prefKey: String,
-    @ColorInt prefColors: IntArray?
+    @ColorInt prefColors: IntArray
 ) {
     key = prefKey
     title = activity.getString(R.string.primary_color)
     setIcon(R.drawable.palette)
-    if (prefColors != null) {
-        setAvailableColors(prefColors)
-    } else {
-        setAvailableColorsArrayRes(R.array.theme_color_preference_available_colors)
-    }
+    setAvailableColors(prefColors)
+    setDefaultValue("#${Integer.toHexString(color)}")
     setOnPreferenceChangeListener { _, _ ->
         activity.recreate()
         true

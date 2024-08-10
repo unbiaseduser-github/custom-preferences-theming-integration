@@ -1,15 +1,12 @@
 package com.sixtyninefourtwenty.theming.sample.inmemory
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.core.graphics.toColorInt
 import androidx.core.view.isVisible
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
@@ -18,12 +15,8 @@ import com.sixtyninefourtwenty.theming.sample.CUSTOM_PREFERENCE_SUPPLIER_JAVA_SA
 import com.sixtyninefourtwenty.theming.sample.CUSTOM_PREFERENCE_SUPPLIER_KOTLIN_SAMPLE
 import com.sixtyninefourtwenty.theming.sample.R
 import com.sixtyninefourtwenty.theming.sample.databinding.ActivityInMemoryThemingBinding
-import com.sixtyninefourtwenty.theming.sample.databinding.BottomSheetDialogBaseBinding
 import com.sixtyninefourtwenty.theming.sample.utils.ToolbarActivity
 import com.sixtyninefourtwenty.theming.sample.utils.addInfoItem
-import com.sixtyninefourtwenty.theming.sample.utils.inflateAndSetupInfoWithCodeSamplesLayout
-import com.sixtyninefourtwenty.theming.sample.utils.setContentView
-import com.sixtyninefourtwenty.theming.sample.utils.setTitle
 import com.sixtyninefourtwenty.theming.sample.utils.showInfoWithCodeSamplesDialog
 import com.sixtyninefourtwenty.theming.sample.utils.theme
 

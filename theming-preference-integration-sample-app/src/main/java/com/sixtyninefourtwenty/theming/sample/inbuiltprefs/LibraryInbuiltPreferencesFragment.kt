@@ -3,12 +3,12 @@ package com.sixtyninefourtwenty.theming.sample.inbuiltprefs
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
-import com.sixtyninefourtwenty.theming.preferences.addThemingPreferences
+import com.sixtyninefourtwenty.custompreferences.PreferenceFragmentCompatAccommodateCustomDialogPreferences
+import com.sixtyninefourtwenty.theming.preferences.addThemingPreferencesWithDefaultSettings
 import com.sixtyninefourtwenty.theming.sample.R
 import com.sixtyninefourtwenty.theming.sample.utils.myApplication
 
-class LibraryInbuiltPreferencesFragment : PreferenceFragmentCompat() {
+class LibraryInbuiltPreferencesFragment : PreferenceFragmentCompatAccommodateCustomDialogPreferences() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val context = requireContext()
@@ -26,11 +26,9 @@ class LibraryInbuiltPreferencesFragment : PreferenceFragmentCompat() {
             addPreference(appearanceCategory)
             addPreference(someOtherCategory)
         }
-        appearanceCategory.addThemingPreferences(
+        appearanceCategory.addThemingPreferencesWithDefaultSettings(
             activity = requireActivity(),
-            lightDarkMode = themingPrefs.lightDarkMode,
-            md3 = themingPrefs.md3,
-            themeColorPreferenceAlwaysEnabledOnAndroid12 = themingPrefs.useM3CustomColorThemeOnAndroid12
+            preferenceSupplier = themingPrefs
         )
         someOtherCategory.addPreference(Preference(context).apply {
             title = getString(R.string.your_preference)

@@ -7,14 +7,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
+import android.util.Log
 import androidx.core.content.edit
 import androidx.core.util.Consumer
 import androidx.preference.PreferenceDataStore
 import androidx.preference.PreferenceGroup
-import com.sixtyninefourtwenty.theming.applyTheming
-import com.sixtyninefourtwenty.theming.applyThemingWithoutM3CustomColors
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
+import com.sixtyninefourtwenty.theming.applyTheming
+import com.sixtyninefourtwenty.theming.applyThemingWithoutM3CustomColors
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
 import com.sixtyninefourtwenty.theming.preferences.internal.prefValue
 
@@ -39,9 +40,9 @@ fun copyFromDefaultThemingPreferences(
 }
 
 /**
- * Create a [ThemingPreferencesSupplierWithoutM3CustomColor] that uses the library's internal keys to store preferences.
- * When this is used in [Activity.applyThemingWithoutM3CustomColors], you can use your own preferences
- * fragment with [PreferenceGroup.addThemingPreferencesWithoutM3CustomColor] without specifying custom keys.
+ * Create a [ThemingPreferencesSupplierWithoutM3CustomColor] that uses the library's internal resources.
+ * When this is used in [Activity.applyThemingWithoutM3CustomColors], you must use
+ * [PreferenceGroup.addThemingPreferencesWithoutM3CustomColorWithDefaultSettings] on your own preferences fragment.
  */
 @JvmName("createWithoutM3CustomColor")
 fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: Context) = object : ThemingPreferencesSupplierWithoutM3CustomColor {
@@ -78,8 +79,8 @@ fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: 
 
 /**
  * Create a [ThemingPreferencesSupplier] that uses the library's internal keys to store preferences.
- * When this is used in [Activity.applyTheming], you can use your own preferences
- * fragment with [PreferenceGroup.addThemingPreferences] without specifying custom keys.
+ * When this is used in [Activity.applyTheming], you must use
+ * [PreferenceGroup.addThemingPreferencesWithDefaultSettings] on your own preferences fragment.
  */
 @JvmName("create")
 fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : ThemingPreferencesSupplier {
@@ -111,8 +112,13 @@ fun PreferenceDataStore.toThemingPreferencesSupplierWithoutM3CustomColor(context
         set(value) = putBoolean(DefaultThemingPreferences.MD3_KEY, value)
 
     override var themeColor: ThemeColor
-        get() = ThemeColor.entries.first { it.getColorInt(context) == getInt(
-            DefaultThemingPreferences.PRIMARY_COLOR_KEY, ThemeColor.BLUE.getColorInt(context)) }
+        get() = ThemeColor.entries.first {
+            Log.d("themeColor", it.getColorInt(context).toString())
+            Log.d("themeColor", getInt(
+                DefaultThemingPreferences.PRIMARY_COLOR_KEY, ThemeColor.BLUE.getColorInt(context)).toString())
+            it.getColorInt(context) == getInt(
+            DefaultThemingPreferences.PRIMARY_COLOR_KEY, ThemeColor.BLUE.getColorInt(context))
+        }
         set(value) = putInt(DefaultThemingPreferences.PRIMARY_COLOR_KEY, value.getColorInt(context))
 
     override var lightDarkMode: LightDarkMode

@@ -51,22 +51,18 @@ val INBUILT_PREFS_KOTLIN_SAMPLE = """
     }
     
     //YourSettingsFragment.kt
-    class YourSettingsFragment : PreferenceFragmentCompat() {
+    // Make sure to extend PreferenceFragmentCompatAccommodateCustomDialogPreferences or replicate
+    // its functionality!
+    class YourSettingsFragment : PreferenceFragmentCompatAccommodateCustomDialogPreferences() {
         
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val dataStore: YourPreferenceDataStore = ...
             preferenceManager.preferenceDataStore = dataStore
             val prefs: ThemingPreferencesSupplier = dataStore.toThemingPreferencesSupplier(requireContext())
             val category = findPreference<PreferenceCategory>("your_key")!!
-            category.addThemingPreferences(
+            category.addThemingPreferencesWithDefaultSettings(
                 requireActivity(),
-                prefs.lightDarkMode,
-                prefs.md3,
-                prefs.useM3CustomColorThemeOnAndroid12
-                /*
-                Since you're using a default ThemingPreferencesSupplier implementation, 
-                there's no need to supply any of the optional parameters
-                */
+                prefs
             )
         }
         
@@ -84,7 +80,7 @@ val INBUILT_PREFS_KOTLIN_SAMPLE = """
     
         //Your data storage implementation
         
-        private val values: Array<CharSequence> = arrayOf( /*Your char sequences here. Just remember to have one for each LightDarkMode.*/)
+        val values: Array<CharSequence> = arrayOf( /*Your char sequences here. Just remember to have one for each LightDarkMode.*/)
         
         private val lightDarkModeValues: Map<LightDarkMode, String> = mapOf(
             LightDarkMode.LIGHT to values[0], //other values
@@ -97,7 +93,7 @@ val INBUILT_PREFS_KOTLIN_SAMPLE = """
             }
             set(value) = putString(LIGHT_DARK_MODE_KEY, lightDarkModeValues[value]!!)
             
-        private val colors: IntArray = intArrayOf( /*Your color ints here. Just remember to have one for each ThemeColor.*/ )    
+        val colors: IntArray = intArrayOf( /*Your color ints here. Just remember to have one for each ThemeColor.*/ )    
             
         private val themeColorValues: Map<ThemeColor, Int> = mapOf(
             ThemeColor.BLUE to colors[0], //other values
@@ -106,6 +102,14 @@ val INBUILT_PREFS_KOTLIN_SAMPLE = """
         //themeColor implementation is similar to lightDarkMode, just with getInt/putInt instead.
            
         //md3 and useM3CustomColorThemeOnAndroid12 are boolean values, not much to say here
+        
+        fun getEntryValueForLightDarkMode(lightDarkMode: LightDarkMode): String {
+            return lightDarkModeValues[LightDarkMode]!!
+        }
+        
+        fun getColorValueForThemeColor(themeColor: ThemeColor): Int {
+            return themeColorValues[themeColor]!!
+        }
     }
     
     //YourActivity.kt
@@ -122,24 +126,38 @@ val INBUILT_PREFS_KOTLIN_SAMPLE = """
     }
     
     //YourSettingsFragment.kt
-    class YourSettingsFragment : PreferenceFragmentCompat() {
+    // Make sure to extend PreferenceFragmentCompatAccommodateCustomDialogPreferences or replicate
+    // its functionality!
+    class YourSettingsFragment : PreferenceFragmentCompatAccommodateCustomDialogPreferences() {
         
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val dataStore: YourPreferenceDataStore = ...
             preferenceManager.preferenceDataStore = dataStore
             val category = findPreference<PreferenceCategory>("your_key")!!
-            category.addThemingPreferences(
+            category.addM3Preference(
                 requireActivity(),
-                dataStore.lightDarkMode,
-                dataStore.md3,
-                dataStore.useM3CustomColorThemeOnAndroid12,
-                m3PrefKey = M3_KEY,
-                lightDarkModePrefKey = LIGHT_DARK_MODE_KEY,
-                lightDarkModePrefEntries = null, //Use library's resources. As long as you have a value for each LightDarkMode it would be fine.
-                lightDarkModePrefEntryValues = dataStore.values,
-                useMD3CustomColorsThemeOnAndroid12PrefKey = USE_M3_CUSTOM_COLOR_A12_KEY,
-                themeColorPrefKey = THEME_COLOR_KEY,
-                themeColorPrefColors = dataStore.colors
+                dataStore,
+                prefKey = M3_KEY
+            )
+            category.addLightDarkModePreference(
+                requireActivity(),
+                dataStore,
+                valueFunction = dataStore::getEntryValueForLightDarkMode,
+                prefKey = LIGHT_DARK_MODE_KEY,
+                prefEntries = requireContext().resources.getStringArray(...),
+                prefEntryValues = dataStore.values
+            )
+            category.addUseMD3CustomColorsThemeOnAndroid12Preference(
+                requireActivity(),
+                dataStore,
+                prefKey = USE_M3_CUSTOM_COLOR_A12_KEY
+            )
+            category.addThemeColorPreference(
+                requireActivity(),
+                dataStore,
+                valueFunction = dataStore::getColorValueForThemeColor,
+                prefKey = THEME_COLOR_KEY,
+                prefColors = dataStore.colors
             )
         }
         
@@ -172,23 +190,19 @@ val INBUILT_PREFS_JAVA_SAMPLE = """
     }
     
     //YourSettingsFragment.java
-    public class YourSettingsFragment extends PreferenceFragmentCompat {
+    // Make sure to extend PreferenceFragmentCompatAccommodateCustomDialogPreferences or replicate
+    // its functionality!
+    public class YourSettingsFragment extends PreferenceFragmentCompatAccommodateCustomDialogPreferences {
     
          public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
              YourPreferenceDataStore dataStore = ...;
              getPreferenceManager().setPreferenceDataStore(dataStore);
              var prefs = ThemingPreferencesSuppliers.create(dataStore, requireContext());
              PreferenceCategory category = Objects.requireNonNull(findPreference("your_key"));
-             ThemingPreferenceUI.addThemingPreferences(
+             ThemingPreferenceUI.addThemingPreferencesWithDefaultSettings(
                  category,
                  requireActivity(),
-                 prefs.getLightDarkMode(),
-                 prefs.getMd3(),
-                 prefs.getUseM3CustomColorThemeOnAndroid12(),
-                 /*
-                 Since you're using a default ThemingPreferencesSupplier implementation, 
-                 there's no need to supply any of the optional parameters
-                 */
+                 prefs
              )
          }
     
@@ -241,6 +255,14 @@ val INBUILT_PREFS_JAVA_SAMPLE = """
         //themeColor is similar to lightDarkMode, just with getInt/putInt instead.
         
         //md3 and useM3CustomColorThemeOnAndroid12 are boolean values, not much to say here
+        
+        public String getEntryValueForLightDarkMode(LightDarkMode lightDarkMode) {
+            return Objects.requireNonNull(lightDarkModeValues.get(lightDarkMode));
+        }
+        
+        public Integer getColorValueForThemeColor(ThemeColor themeColor) {
+            return Objects.requireNonNull(themeColorValues.get(themeColor));
+        }
     }
     
     //YourActivity.java
@@ -258,23 +280,40 @@ val INBUILT_PREFS_JAVA_SAMPLE = """
     }
     
     //YourSettingsFragment.java
-    public class YourSettingsFragment extends PreferenceFragmentCompat {
+    // Make sure to extend PreferenceFragmentCompatAccommodateCustomDialogPreferences or replicate
+    // its functionality!
+    public class YourSettingsFragment extends PreferenceFragmentCompatAccommodateCustomDialogPreferences {
         
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             YourPreferenceDataStore dataStore = ...;
             getPreferenceManager.setPreferenceDataStore(dataStore);
             PreferenceCategory category = Objects.requireNonNull(findPreference("your_key"));
-            ThemingPreferenceUI.addThemingPreferences(
+            ThemingPreferenceUI.addM3Preference(
                 category,
                 requireActivity(),
-                dataStore.getLightDarkMode(),
-                dataStore.getMd3(),
-                dataStore.getUseM3CustomColorThemeOnAndroid12(),
-                YourPreferenceDataStore.M3_KEY,
+                dataStore,
+                YourPreferenceDataStore.M3_KEY
+            );
+            ThemingPreferenceUI.addLightDarkModePreference(
+                category,
+                requireActivity(),
+                dataStore,
+                dataStore::getEntryValueForLightDarkMode,
                 YourPreferenceDataStore.LIGHT_DARK_MODE_KEY,
-                null, //Use library's resources. As long as you have a value for each LightDarkMode it would be fine.
-                dataStore.getValues(),
-                YourPreferenceDataStore.USE_M3_CUSTOM_COLOR_A12_KEY,
+                requireContext().getResources().getStringArray(...),
+                dataStore.getValues()
+            );
+            ThemingPreferenceUI.addUseMD3CustomColorsThemeOnAndroid12Preference(
+                category,
+                requireActivity(),
+                dataStore,
+                YourPreferenceDataStore.USE_M3_CUSTOM_COLOR_A12_KEY
+            );
+            ThemingPreferenceUI.addThemeColorPreference(
+                category,
+                requireActivity(),
+                dataStore,
+                dataStore::getColorValueForThemeColor,
                 YourPreferenceDataStore.THEME_COLOR_KEY,
                 dataStore.getColors()
             );
