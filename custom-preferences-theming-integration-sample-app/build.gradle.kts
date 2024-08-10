@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":theming-preference-integration"))
+    implementation(project(":custom-preferences-theming-integration"))
     implementation("io.github.amrdeveloper:codeview:1.3.9")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")

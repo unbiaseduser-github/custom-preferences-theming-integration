@@ -1,0 +1,13 @@
+<resources>
+    <style name="Theme.ThemingSample.Material2" parent="AppTheme.Material2">
+
+    </style>
+
+    <style name="Theme.ThemingSample.Material3.CustomColors" parent="AppTheme.Material3.CustomColors.WithCustomPreferences">
+
+    </style>
+
+    <style name="Theme.ThemingSample.Material3.DynamicColors" parent="AppTheme.Material3.DynamicColors.WithCustomPreferences">
+
+    </style>
+</resources>
