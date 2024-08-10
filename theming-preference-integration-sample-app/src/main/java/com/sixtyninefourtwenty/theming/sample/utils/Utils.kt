@@ -12,7 +12,9 @@ import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sixtyninefourtwenty.theming.applyTheming
+import com.sixtyninefourtwenty.theming.applyThemingWithoutM3CustomColors
 import com.sixtyninefourtwenty.theming.preferences.ThemingPreferencesSupplier
+import com.sixtyninefourtwenty.theming.preferences.ThemingPreferencesSupplierWithoutM3CustomColor
 import com.sixtyninefourtwenty.theming.preferences.applyThemingWithDefaultPreferences
 import com.sixtyninefourtwenty.theming.sample.MyApplication
 import com.sixtyninefourtwenty.theming.sample.R
@@ -36,6 +38,16 @@ fun Activity.theme(
             material3DynamicColorsThemeStyleRes = R.style.Theme_ThemingSample_Material3_DynamicColors
         )
     }
+}
+
+fun Activity.themeWithoutM3CustomColor(
+    preferencesSupplier: ThemingPreferencesSupplierWithoutM3CustomColor
+) {
+    applyThemingWithoutM3CustomColors(
+        material2ThemeStyleRes = R.style.Theme_ThemingSample_Material2,
+        material3DynamicColorsThemeStyleRes = R.style.Theme_ThemingSample_Material3_DynamicColors,
+        preferencesSupplier = preferencesSupplier
+    )
 }
 
 inline fun <reified T : Activity> Context.startActivity() = startActivity(

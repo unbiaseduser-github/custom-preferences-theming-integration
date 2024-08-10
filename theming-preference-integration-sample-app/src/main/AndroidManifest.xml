@@ -13,6 +13,9 @@
             android:name=".inbuiltprefs.LibraryInbuiltPreferencesActivity"
             android:exported="false" />
         <activity
+            android:name=".inbuiltprefs.nom3customcolor.LibraryInbuiltPreferencesActivityNoM3CustomColor"
+            android:exported="false" />
+        <activity
             android:name=".inmemory.InMemoryThemingActivity"
             android:exported="false" />
         <activity

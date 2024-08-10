@@ -25,5 +25,6 @@
     <string name="inbuilt_prefs_sample_info">This activity demonstrates the ability to use the library\'s individual preference items that correspond to ThemingPreferencesSupplier\'s properties.</string>
     <string name="activity_with_library_inbuilt_fragment">Activity with library\'s inbuilt fragment</string>
     <string name="activity_with_library_individual_inbuilt_preferences">Activity with library\'s individual inbuilt preferences</string>
+    <string name="activity_with_library_individual_inbuilt_preferences_no_m3_custom_color">Activity with library\'s individual inbuilt preferences (no Material 3 custom color theme)</string>
     <string name="activity_with_non_persistent_theming">Activity with non-persistent theming</string>
 </resources>
