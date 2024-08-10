@@ -323,6 +323,7 @@ val INBUILT_PREFS_JAVA_SAMPLE = """
     
 """.trimIndent()
 
+@Suppress("unused")
 val CUSTOM_PREFERENCE_SUPPLIER_KOTLIN_SAMPLE = """
     //YourPreferenceSupplier.kt
     object YourPreferenceSupplier : ThemingPreferencesSupplier {
@@ -347,6 +348,7 @@ val CUSTOM_PREFERENCE_SUPPLIER_KOTLIN_SAMPLE = """
     }
 """.trimIndent()
 
+@Suppress("unused")
 val CUSTOM_PREFERENCE_SUPPLIER_JAVA_SAMPLE = """
     //YourPreferenceSupplier.java
     public class YourPreferenceSupplier implements ThemingPreferencesSupplier {

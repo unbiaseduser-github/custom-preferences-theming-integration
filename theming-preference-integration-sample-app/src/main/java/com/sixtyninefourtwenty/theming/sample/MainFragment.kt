@@ -5,7 +5,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.sixtyninefourtwenty.theming.sample.inbuiltprefs.LibraryInbuiltPreferencesActivity
 import com.sixtyninefourtwenty.theming.sample.inbuiltprefs.nom3customcolor.LibraryInbuiltPreferencesActivityNoM3CustomColor
-import com.sixtyninefourtwenty.theming.sample.inmemory.InMemoryThemingActivity
 import com.sixtyninefourtwenty.theming.sample.utils.startActivity
 
 class MainFragment : PreferenceFragmentCompat() {
@@ -34,14 +33,6 @@ class MainFragment : PreferenceFragmentCompat() {
                 isIconSpaceReserved = false
                 setOnPreferenceClickListener {
                     context.startActivity<LibraryInbuiltPreferencesActivityNoM3CustomColor>()
-                    true
-                }
-            })
-            addPreference(Preference(context).apply {
-                title = getString(R.string.activity_with_non_persistent_theming)
-                isIconSpaceReserved = false
-                setOnPreferenceClickListener {
-                    context.startActivity<InMemoryThemingActivity>()
                     true
                 }
             })
