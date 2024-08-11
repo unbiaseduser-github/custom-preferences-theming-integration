@@ -1,4 +1,4 @@
-package com.sixtyninefourtwenty.themingintegration
+package com.sixtyninefourtwenty.theming.preferences
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

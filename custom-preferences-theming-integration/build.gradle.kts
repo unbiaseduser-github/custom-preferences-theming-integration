@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sixtyninefourtwenty.themingintegration"
+    namespace = "com.sixtyninefourtwenty.theming.preferences"
     compileSdk = 34
 
     publishing {
@@ -53,7 +53,7 @@ afterEvaluate {
 
                 pom {
                     name.set("custom-preferences-theming-integration")
-                    description.set("Integration of custom preferences' styling with my theming library")
+                    description.set("Integration of theming library with custom-preferences")
                     url.set("https://github.com/unbiaseduser-github/library-integrations")
 
                     licenses {
@@ -85,10 +85,12 @@ afterEvaluate {
 
 dependencies {
 
+    api("com.github.unbiaseduser-github:theming:2.3.1")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    api(project(":theming-preference-integration"))
+    api("androidx.preference:preference-ktx:1.2.1")
+    api("com.github.unbiaseduser-github:custom-preferences:2.2.1")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
