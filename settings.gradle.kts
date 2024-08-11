@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "library-integrations"
+rootProject.name = "custom-preferences-theming-integration"
 include(":custom-preferences-theming-integration")
-include(":custom-preferences-theming-integration-sample-app")
+include(":sample-app")
