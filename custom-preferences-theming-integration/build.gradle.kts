@@ -39,6 +39,15 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+}
+
+tasks.withType<Test>().configureEach {
+    jvmArgs("-Xmx1024m")
 }
 
 afterEvaluate {
@@ -93,6 +102,9 @@ dependencies {
     api("com.github.unbiaseduser-github:custom-preferences:2.2.1")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("androidx.fragment:fragment-testing:1.8.2")
+    testImplementation("androidx.test.ext:junit:1.2.1")
+    testImplementation("org.robolectric:robolectric:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
