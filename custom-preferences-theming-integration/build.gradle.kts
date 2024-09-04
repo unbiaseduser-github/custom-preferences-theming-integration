@@ -21,7 +21,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -89,7 +88,6 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     api("androidx.preference:preference-ktx:1.2.1")
     api("com.github.unbiaseduser-github:custom-preferences:2.2.3")
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.fragment:fragment-testing:1.8.2")
     testImplementation("androidx.test.ext:junit:1.2.1")
