@@ -3,10 +3,10 @@ package com.sixtyninefourtwenty.theming.preferences
 import android.content.Context
 import android.os.Build
 import androidx.fragment.app.testing.launchFragment
-import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.sixtyninefourtwenty.custompreferences.ToggleGroupPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import org.junit.Assert.assertArrayEquals
@@ -43,9 +43,9 @@ class LightDarkModePreferenceEntryValueTest {
                         }
                     )
                 }
-                val pref = fragment.findPreference<ListPreference>(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY)!!
-                assertArrayEquals(expectedEntries, pref.entries)
-                assertArrayEquals(expectedEntryValues, pref.entryValues)
+                val pref = fragment.findPreference<ToggleGroupPreference>(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY)!!
+                assertArrayEquals(expectedEntries, pref.entries.toTypedArray())
+                assertArrayEquals(expectedEntryValues, pref.entryValues.toTypedArray())
             }
         }
     }

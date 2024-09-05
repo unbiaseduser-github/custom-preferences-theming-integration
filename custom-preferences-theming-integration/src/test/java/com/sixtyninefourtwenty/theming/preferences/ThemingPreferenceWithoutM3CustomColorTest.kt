@@ -2,11 +2,11 @@ package com.sixtyninefourtwenty.theming.preferences
 
 import androidx.core.util.Consumer
 import androidx.fragment.app.testing.launchFragment
-import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.TwoStatePreference
 import androidx.test.core.app.ApplicationProvider
 import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
+import com.sixtyninefourtwenty.custompreferences.ToggleGroupPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
@@ -26,7 +26,7 @@ class ThemingPreferenceWithoutM3CustomColorTest(
     private val preferencesSupplier: ImmutableThemingPreferencesSupplierWithoutM3CustomColor,
     private val assertMd3: Consumer<TwoStatePreference>,
     private val assertThemeColor: Consumer<PredefinedColorPickerPreference>,
-    private val assertLightDarkMode: Consumer<ListPreference>
+    private val assertLightDarkMode: Consumer<ToggleGroupPreference>
 ) {
     companion object {
         @JvmStatic
@@ -35,7 +35,7 @@ class ThemingPreferenceWithoutM3CustomColorTest(
         fun args(): Iterable<Array<Any>> {
             val themeColor = ThemeColor.entries.random()
             val lightDarkMode = LightDarkMode.entries.random()
-            val commonLightDarkModePreferenceAssertion = Consumer<ListPreference> {
+            val commonLightDarkModePreferenceAssertion = Consumer<ToggleGroupPreference> {
                 assertEquals(lightDarkMode.prefValue, it.value)
             }
             return listOf(
