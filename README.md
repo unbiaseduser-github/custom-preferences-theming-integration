@@ -1,3 +1,5 @@
+[![jitpack badge](https://jitpack.io/v/unbiaseduser-github/custom-preferences-theming-integration.svg)](https://jitpack.io/#unbiaseduser-github/custom-preferences-theming-integration)
+
 Library that integrates [theming](https://gitlab.com/unbiaseduser/theming) and
 [custom-preferences](https://gitlab.com/unbiaseduser/custom-preferences).
 
@@ -8,7 +10,8 @@ Library that integrates [theming](https://gitlab.com/unbiaseduser/theming) and
 - Convenience methods to adapt `SharedPreferences` and `PreferenceDataStore` into `ThemingPreferencesSupplier` to use the above preferences
 
 # Usage
-Define your themes like you would with the base `theming` library, but for the Material 3 themes, instead of inheriting from `AppTheme.Material3.*`, change it to `AppTheme.Material3.*.WithPreferences` instead.
+Define your themes like you would with the base `theming` library, but instead of inheriting from
+`AppTheme.Material*`, change it to `AppTheme.Material*.WithPreferences` instead.
 
 See [code samples](https://gitlab.com/unbiaseduser/custom-preferences-theming-integration/-/blob/master/sample-app/src/main/java/com/sixtyninefourtwenty/theming/sample/CodeSamples.kt?ref_type=heads).
 
