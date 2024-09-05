@@ -4,8 +4,10 @@
 package com.sixtyninefourtwenty.theming.preferences
 
 import android.app.Activity
+import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceGroup
 import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
@@ -88,14 +90,16 @@ fun PreferenceGroup.addM3PreferenceWithoutM3CustomColorWithDefaultSettings(
  * Version of [PreferenceGroup.addLightDarkModePreference] for apps that don't support M3 custom color theme.
  * @see addLightDarkModePreferenceWithoutM3CustomColorWithDefaultSettings
  */
+@JvmOverloads
 fun PreferenceGroup.addLightDarkModePreferenceWithoutM3CustomColor(
     activity: Activity,
     preferenceSupplier: ImmutableThemingPreferencesSupplierWithoutM3CustomColor,
     valueFunction: (LightDarkMode) -> String,
     prefKey: String,
     prefEntries: Array<out CharSequence>,
-    prefEntryValues: Array<out CharSequence>
-) = addLightDarkModePreference(activity, preferenceSupplier, valueFunction, prefKey, prefEntries, prefEntryValues) //No change.
+    prefEntryValues: Array<out CharSequence>,
+    prefIcons: List<Drawable?>? = null
+) = addLightDarkModePreference(activity, preferenceSupplier, valueFunction, prefKey, prefEntries, prefEntryValues, prefIcons) //No change.
 
 /**
  * Version of [addLightDarkModePreferenceWithoutM3CustomColor] that uses library internal resources, which is used by the library
@@ -119,6 +123,20 @@ fun PreferenceGroup.addLightDarkModePreferenceWithoutM3CustomColorWithDefaultSet
         activity.resources.getStringArray(R.array.themes_preference_entry_values)
     } else {
         activity.resources.getStringArray(R.array.themes_preference_entry_values_p)
+    },
+    prefIcons = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        listOf(
+            ContextCompat.getDrawable(activity, R.drawable.light_mode),
+            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
+            ContextCompat.getDrawable(activity, R.drawable.battery_saver),
+            ContextCompat.getDrawable(activity, R.drawable.android)
+        )
+    } else {
+        listOf(
+            ContextCompat.getDrawable(activity, R.drawable.light_mode),
+            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
+            ContextCompat.getDrawable(activity, R.drawable.battery_saver)
+        )
     }
 )
 

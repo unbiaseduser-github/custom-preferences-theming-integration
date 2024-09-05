@@ -4,12 +4,14 @@
 package com.sixtyninefourtwenty.theming.preferences
 
 import android.app.Activity
+import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.annotation.ColorInt
-import androidx.preference.ListPreference
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceGroup
 import androidx.preference.SwitchPreferenceCompat
 import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
+import com.sixtyninefourtwenty.custompreferences.ToggleGroupPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.applyTheming
@@ -111,7 +113,7 @@ fun PreferenceGroup.addM3PreferenceWithDefaultSettings(
 )
 
 /**
- * Adds a [ListPreference].
+ * Adds a [ToggleGroupPreference].
  *
  * Note that this only supports apps supporting all 3 themes: M2, M3 custom colors and M3 dynamic colors.
  * If your app only supports M2 and M3 dynamic colors, do *not* use this - use [addLightDarkModePreferenceWithoutM3CustomColor]
@@ -124,20 +126,24 @@ fun PreferenceGroup.addM3PreferenceWithDefaultSettings(
  * for each [LightDarkMode] value, in order.
  * @see addLightDarkModePreferenceWithDefaultSettings
  */
+@JvmOverloads
 fun PreferenceGroup.addLightDarkModePreference(
     activity: Activity,
     preferenceSupplier: ImmutableThemingPreferencesSupplierWithoutM3CustomColor,
     valueFunction: (LightDarkMode) -> String,
     prefKey: String,
     prefEntries: Array<out CharSequence>,
-    prefEntryValues: Array<out CharSequence>
+    prefEntryValues: Array<out CharSequence>,
+    prefIcons: List<Drawable?>? = null
 ) {
-    addPreference(ListPreference(activity).apply {
+    addPreference(ToggleGroupPreference(activity).apply {
         key = prefKey
         title = activity.getString(R.string.theme)
-        dialogTitle = activity.getString(R.string.theme)
-        entries = prefEntries
-        entryValues = prefEntryValues
+        setEntries(
+            entries = prefEntries.toList(),
+            entryValues = prefEntryValues.toList(),
+            icons = prefIcons
+        )
         setIcon(when (preferenceSupplier.lightDarkMode) {
             LightDarkMode.LIGHT -> R.drawable.light_mode
             LightDarkMode.DARK -> R.drawable.dark_mode
@@ -149,7 +155,6 @@ fun PreferenceGroup.addLightDarkModePreference(
             activity.recreate()
             true
         }
-        summaryProvider = ListPreference.SimpleSummaryProvider.getInstance()
     })
 }
 
@@ -175,6 +180,20 @@ fun PreferenceGroup.addLightDarkModePreferenceWithDefaultSettings(
         activity.resources.getStringArray(R.array.themes_preference_entry_values)
     } else {
         activity.resources.getStringArray(R.array.themes_preference_entry_values_p)
+    },
+    prefIcons = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        listOf(
+            ContextCompat.getDrawable(activity, R.drawable.light_mode),
+            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
+            ContextCompat.getDrawable(activity, R.drawable.battery_saver),
+            ContextCompat.getDrawable(activity, R.drawable.android)
+        )
+    } else {
+        listOf(
+            ContextCompat.getDrawable(activity, R.drawable.light_mode),
+            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
+            ContextCompat.getDrawable(activity, R.drawable.battery_saver)
+        )
     }
 )
 
