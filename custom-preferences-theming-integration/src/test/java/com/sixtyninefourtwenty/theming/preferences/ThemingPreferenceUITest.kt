@@ -105,10 +105,10 @@ class Android11ThemingPreferenceUITest(
                 fragment.preferenceScreen = fragment.preferenceManager.createPreferenceScreen(fragment.requireContext()).apply {
                     addThemingPreferencesWithDefaultSettings(fragment.requireActivity(), preferencesSupplier)
                 }
-                assertMd3.accept(fragment.findPreference(DefaultThemingPreferences.MD3_KEY)!!)
-                assertFalse(fragment.findPreference<TwoStatePreference>(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12)!!.isVisible)
-                assertThemeColor.accept(fragment.findPreference(DefaultThemingPreferences.PRIMARY_COLOR_KEY)!!)
-                assertLightDarkMode.accept(fragment.findPreference(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY)!!)
+                assertMd3.accept(fragment.preferenceScreen.getM3PreferenceWithDefaultSettings())
+                assertFalse(fragment.preferenceScreen.getUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings().isVisible)
+                assertThemeColor.accept(fragment.preferenceScreen.getThemeColorPreferenceWithDefaultSettings())
+                assertLightDarkMode.accept(fragment.preferenceScreen.getLightDarkModePreferenceWithDefaultSettings())
             }
         }
     }
@@ -217,10 +217,10 @@ class Android12ThemingPreferenceUITest(
                 fragment.preferenceScreen = fragment.preferenceManager.createPreferenceScreen(fragment.requireContext()).apply {
                     addThemingPreferencesWithDefaultSettings(fragment.requireActivity(), preferencesSupplier)
                 }
-                assertMd3.accept(fragment.findPreference(DefaultThemingPreferences.MD3_KEY)!!)
-                assertUseM3CustomColorOnAndroid12.accept(fragment.findPreference(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12)!!)
-                assertThemeColor.accept(fragment.findPreference(DefaultThemingPreferences.PRIMARY_COLOR_KEY)!!)
-                assertLightDarkMode.accept(fragment.findPreference(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY)!!)
+                assertMd3.accept(fragment.preferenceScreen.getM3PreferenceWithDefaultSettings())
+                assertUseM3CustomColorOnAndroid12.accept(fragment.preferenceScreen.getUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings())
+                assertThemeColor.accept(fragment.preferenceScreen.getThemeColorPreferenceWithDefaultSettings())
+                assertLightDarkMode.accept(fragment.preferenceScreen.getLightDarkModePreferenceWithDefaultSettings())
             }
         }
     }

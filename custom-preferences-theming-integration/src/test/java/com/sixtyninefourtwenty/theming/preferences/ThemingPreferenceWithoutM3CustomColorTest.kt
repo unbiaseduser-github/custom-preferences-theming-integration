@@ -13,7 +13,7 @@ import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
 import com.sixtyninefourtwenty.theming.preferences.internal.prefValue
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNull
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -81,10 +81,12 @@ class ThemingPreferenceWithoutM3CustomColorTest(
                 fragment.preferenceScreen = fragment.preferenceManager.createPreferenceScreen(fragment.requireContext()).apply {
                     addThemingPreferencesWithoutM3CustomColorWithDefaultSettings(fragment.requireActivity(), preferencesSupplier)
                 }
-                assertMd3.accept(fragment.findPreference(DefaultThemingPreferences.MD3_KEY)!!)
-                assertNull(fragment.findPreference<TwoStatePreference>(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12))
-                assertThemeColor.accept(fragment.findPreference(DefaultThemingPreferences.PRIMARY_COLOR_KEY)!!)
-                assertLightDarkMode.accept(fragment.findPreference(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY)!!)
+                assertMd3.accept(fragment.preferenceScreen.getM3PreferenceWithDefaultSettings())
+                assertThrows(IllegalStateException::class.java) {
+                    fragment.preferenceScreen.getUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings()
+                }
+                assertThemeColor.accept(fragment.preferenceScreen.getThemeColorPreferenceWithDefaultSettings())
+                assertLightDarkMode.accept(fragment.preferenceScreen.getLightDarkModePreferenceWithDefaultSettings())
             }
         }
     }

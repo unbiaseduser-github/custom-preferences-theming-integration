@@ -113,6 +113,15 @@ fun PreferenceGroup.addM3PreferenceWithDefaultSettings(
 )
 
 /**
+ * Gets the preference that has been added with [addM3PreferenceWithDefaultSettings] and
+ * [its withoutM3CustomColor counterpart][addM3PreferenceWithoutM3CustomColorWithDefaultSettings].
+ * @throws IllegalStateException if the preference was not added
+ */
+fun PreferenceGroup.getM3PreferenceWithDefaultSettings(): SwitchPreferenceCompat {
+    return findPreference(DefaultThemingPreferences.MD3_KEY) ?: error("addM3PreferenceWithDefaultSettings was not called on $this")
+}
+
+/**
  * Adds a [ToggleGroupPreference].
  *
  * Note that this only supports apps supporting all 3 themes: M2, M3 custom colors and M3 dynamic colors.
@@ -198,6 +207,15 @@ fun PreferenceGroup.addLightDarkModePreferenceWithDefaultSettings(
 )
 
 /**
+ * Gets the preference that has been added with [addLightDarkModePreferenceWithDefaultSettings] and
+ * [its withoutM3CustomColor counterpart][addLightDarkModePreferenceWithoutM3CustomColorWithDefaultSettings].
+ * @throws IllegalStateException if the preference was not added
+ */
+fun PreferenceGroup.getLightDarkModePreferenceWithDefaultSettings(): ToggleGroupPreference {
+    return findPreference(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY) ?: error("addLightDarkModePreferenceWithDefaultSettings was not called on $this")
+}
+
+/**
  * Adds a [SwitchPreferenceCompat].
  * @param prefKey Key to use for the preference.
  * @see addUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings
@@ -238,6 +256,14 @@ fun PreferenceGroup.addUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSe
     preferenceSupplier,
     prefKey = DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12
 )
+
+/**
+ * Gets the preference that has been added with [addUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings].
+ * @throws IllegalStateException if the preference was not added
+ */
+fun PreferenceGroup.getUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings(): SwitchPreferenceCompat {
+    return findPreference(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12) ?: error("addUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings was not called on $this")
+}
 
 /**
  * Adds a [PredefinedColorPickerPreference].
@@ -289,3 +315,12 @@ fun PreferenceGroup.addThemeColorPreferenceWithDefaultSettings(
     prefKey = DefaultThemingPreferences.PRIMARY_COLOR_KEY,
     prefColors = activity.resources.getIntArray(R.array.theme_color_preference_available_colors)
 )
+
+/**
+ * Gets the preference that has been added with [addThemeColorPreferenceWithDefaultSettings] and
+ * [its `withoutM3CustomColor` counterpart][addThemeColorPreferenceWithoutM3CustomColorWithDefaultSettings].
+ * @throws IllegalStateException if the preference was not added
+ */
+fun PreferenceGroup.getThemeColorPreferenceWithDefaultSettings(): PredefinedColorPickerPreference {
+    return findPreference(DefaultThemingPreferences.PRIMARY_COLOR_KEY) ?: error("addThemeColorPreferenceWithDefaultSettings was not called on $this")
+}
