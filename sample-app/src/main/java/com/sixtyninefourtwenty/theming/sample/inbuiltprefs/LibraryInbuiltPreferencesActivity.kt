@@ -31,8 +31,10 @@ class LibraryInbuiltPreferencesActivity : ToolbarActivity() {
         theme(preferencesSupplier = themePrefs)
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.commit {
-            add<LibraryInbuiltPreferencesFragment>(R.id.fragment_container)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                add<LibraryInbuiltPreferencesFragment>(R.id.fragment_container)
+            }
         }
     }
 

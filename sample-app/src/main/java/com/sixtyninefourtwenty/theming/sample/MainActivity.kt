@@ -19,8 +19,10 @@ class MainActivity : ToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.commit {
-            add<MainFragment>(R.id.fragment_container)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                add<MainFragment>(R.id.fragment_container)
+            }
         }
     }
 }

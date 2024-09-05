@@ -24,8 +24,10 @@ class LibraryInbuiltPreferencesActivityNoM3CustomColor : ToolbarActivity() {
         themeWithoutM3CustomColor(preferencesSupplier = themePrefs)
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.commit {
-            add<LibraryInbuiltPreferencesFragmentNoM3CustomColor>(R.id.fragment_container)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                add<LibraryInbuiltPreferencesFragmentNoM3CustomColor>(R.id.fragment_container)
+            }
         }
     }
 
