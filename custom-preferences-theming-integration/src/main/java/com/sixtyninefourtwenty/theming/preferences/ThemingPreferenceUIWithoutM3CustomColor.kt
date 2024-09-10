@@ -13,6 +13,7 @@ import com.sixtyninefourtwenty.custompreferences.PredefinedColorPickerPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.applyThemingWithoutM3CustomColors
+import com.sixtyninefourtwenty.theming.preferences.internal.ThemeColorPreferenceSummaryProvider
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
 import com.sixtyninefourtwenty.theming.preferences.internal.prefValue
 import com.sixtyninefourtwenty.theming.preferences.internal.setupCommon
@@ -157,7 +158,7 @@ fun PreferenceGroup.addThemeColorPreferenceWithoutM3CustomColor(
             isEnabled = false
             summary = activity.getString(R.string.using_md3)
         } else {
-            summaryProvider = PredefinedColorPickerPreference.getSimpleSummaryProvider()
+            summaryProvider = ThemeColorPreferenceSummaryProvider
         }
     })
 }

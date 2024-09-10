@@ -15,6 +15,7 @@ import com.sixtyninefourtwenty.custompreferences.ToggleGroupPreference
 import com.sixtyninefourtwenty.theming.LightDarkMode
 import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.applyTheming
+import com.sixtyninefourtwenty.theming.preferences.internal.ThemeColorPreferenceSummaryProvider
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
 import com.sixtyninefourtwenty.theming.preferences.internal.prefValue
 import com.sixtyninefourtwenty.theming.preferences.internal.setupCommon
@@ -292,10 +293,10 @@ fun PreferenceGroup.addThemeColorPreference(
                 isEnabled = false
                 summary = activity.getString(R.string.using_android_12_dynamic_colors)
             } else {
-                summaryProvider = PredefinedColorPickerPreference.getSimpleSummaryProvider()
+                summaryProvider = ThemeColorPreferenceSummaryProvider
             }
         } else {
-            summaryProvider = PredefinedColorPickerPreference.getSimpleSummaryProvider()
+            summaryProvider = ThemeColorPreferenceSummaryProvider
         }
     })
 }

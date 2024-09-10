@@ -12,4 +12,10 @@
     <string name="using_md3">Using Material Design 3 theme</string>
     <string name="md3_not_applied">Material Design 3 theme is not applied</string>
     <string name="custom_colors_m3">Material 3 custom colors</string>
+    <string name="blue">Blue</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="purple">Purple</string>
+    <string name="orange">Orange</string>
+    <string name="pink">Pink</string>
 </resources>
