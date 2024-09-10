@@ -89,7 +89,7 @@ dependencies {
     api("androidx.preference:preference-ktx:1.2.1")
     api("com.github.unbiaseduser-github:custom-preferences:2.2.4")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.fragment:fragment-testing:1.8.2")
+    testImplementation("androidx.fragment:fragment-testing:1.8.3")
     testImplementation("androidx.test.ext:junit:1.2.1")
     testImplementation("org.robolectric:robolectric:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
