@@ -5,7 +5,7 @@
     <string name="system">System</string>
     <string name="battery_saver">Battery saver</string>
     <string name="theme">Theme</string>
-    <string name="primary_color">Primary color</string>
+    <string name="color">Color</string>
     <string name="md3">Material Design 3</string>
     <string name="md3_pref_summary">Use Android 12 look and feel</string>
     <string name="using_android_12_dynamic_colors">Using Android 12\'s dynamic colors</string>

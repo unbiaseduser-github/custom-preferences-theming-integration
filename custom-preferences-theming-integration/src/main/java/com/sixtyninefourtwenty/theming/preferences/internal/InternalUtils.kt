@@ -60,7 +60,7 @@ internal fun PredefinedColorPickerPreference.setupCommon(
     @ColorInt prefColors: IntArray
 ) {
     key = prefKey
-    title = activity.getString(R.string.primary_color)
+    title = activity.getString(R.string.color)
     setIcon(R.drawable.palette)
     setAvailableColors(prefColors)
     setDefaultValue("#${Integer.toHexString(color)}")
