@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="AppTheme.Material2.Base.WithPreferences" parent="AppTheme.Material2.Base">
-        <item name="predefinedColorPickerPreferenceStyle">@style/Preference.PredefinedColorPicker</item>
-        <item name="preferenceCustomViewUnderneathStyle">@style/Preference.CustomViewUnderneath</item>
-        <item name="preferenceScrollableCustomViewUnderneathStyle">@style/Preference.ScrollableCustomViewUnderneath</item>
-        <item name="abstractToggleGroupPreferenceStyle">@style/Preference.AbstractToggleGroup</item>
-        <item name="sliderPreferenceStyle">@style/Preference.SliderPreference</item>
-    </style>
+    <style name="AppTheme.Material2.Base.WithPreferences" parent="AppTheme.Material2.Base"/>
 
-    <style name="AppTheme.Material2.WithPreferences" parent="AppTheme.Material2.Base.WithPreferences">
-        <item name="colorPrimary">?attr/m2ColorPrimary</item>
-        <item name="colorPrimaryVariant">?attr/m2ColorPrimaryVariant</item>
-        <item name="colorOnPrimary">?attr/m2ColorOnPrimary</item>
-        <item name="colorSecondary">?attr/m2ColorSecondary</item>
-        <item name="colorSecondaryVariant">?attr/m2ColorSecondaryVariant</item>
-        <item name="colorOnSecondary">?attr/m2ColorOnSecondary</item>
-    </style>
+    <style name="AppTheme.Material2.WithPreferences" parent="AppTheme.Material2"/>
 
-    <style name="AppTheme.Material2.Fallback.WithPreferences" parent="AppTheme.Material2.Base.WithPreferences">
-        <item name="colorPrimary">@color/m2ColorPrimary_blue</item>
-        <item name="colorPrimaryVariant">@color/m2ColorPrimaryVariant_blue</item>
-        <item name="colorOnPrimary">@color/m2ColorOnPrimary_blue</item>
-        <item name="colorSecondary">@color/m2ColorSecondary_blue</item>
-        <item name="colorSecondaryVariant">@color/m2ColorSecondaryVariant_blue</item>
-        <item name="colorOnSecondary">@color/m2ColorOnSecondary_blue</item>
-    </style>
+    <style name="AppTheme.Material2.Fallback.WithPreferences" parent="AppTheme.Material2.Fallback"/>
 
     <style name="AppTheme.Material3.Base.WithPreferences" parent="AppTheme.Material3.Base">
         <item name="android:textAppearanceListItem">@style/TextAppearance.Preference.Title</item>
