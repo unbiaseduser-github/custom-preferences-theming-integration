@@ -44,7 +44,7 @@ afterEvaluate {
             register<MavenPublication>("release") {
                 groupId = "com.sixtyninefourtwenty"
                 artifactId = "custom-preferences-theming-integration"
-                version = "2.1.1"
+                version = "2.1.2"
 
                 from(components["release"])
 
@@ -82,7 +82,7 @@ afterEvaluate {
 
 dependencies {
 
-    api("com.github.unbiaseduser-github:theming:2.3.1")
+    api("com.github.unbiaseduser-github:theming:2.3.2")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
