@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="light">Sáng</string>
+    <string name="dark">Tối</string>
+    <string name="system">Hệ thống</string>
+    <string name="battery_saver">Trình tiết kiệm pin</string>
+    <string name="theme">Chủ đề</string>
+    <string name="color">Màu</string>
+    <string name="md3">Thiết kế Material 3</string>
+    <string name="md3_pref_summary">Dùng ngoại hình Android 12</string>
+    <string name="using_android_12_dynamic_colors">Đang dùng màu động của Android 12</string>
+    <string name="using_md3">Đang dùng thiết kế Material 3</string>
+    <string name="md3_not_applied">Đang không dùng thiết kế Material 3</string>
+    <string name="custom_colors_m3">Màu tùy chỉnh khi dùng Material 3</string>
+    <string name="blue">Xanh lam</string>
+    <string name="red">Đỏ</string>
+    <string name="green">Xanh lục</string>
+    <string name="purple">Tím</string>
+    <string name="orange">Cam</string>
+    <string name="pink">Hồng</string>
+</resources>
