@@ -17,6 +17,10 @@ import com.sixtyninefourtwenty.theming.ThemeColor
 import com.sixtyninefourtwenty.theming.applyTheming
 import com.sixtyninefourtwenty.theming.preferences.internal.ThemeColorPreferenceSummaryProvider
 import com.sixtyninefourtwenty.theming.preferences.internal.getColorInt
+import com.sixtyninefourtwenty.theming.preferences.internal.getLightDarkModeEntries
+import com.sixtyninefourtwenty.theming.preferences.internal.getLightDarkModeEntryValues
+import com.sixtyninefourtwenty.theming.preferences.internal.getLightDarkModeIcons
+import com.sixtyninefourtwenty.theming.preferences.internal.getThemeColorColors
 import com.sixtyninefourtwenty.theming.preferences.internal.prefValue
 import com.sixtyninefourtwenty.theming.preferences.internal.setupCommon
 
@@ -181,28 +185,9 @@ fun PreferenceGroup.addLightDarkModePreferenceWithDefaultSettings(
     preferenceSupplier,
     valueFunction = { it.prefValue },
     prefKey = DefaultThemingPreferences.LIGHT_DARK_MODE_KEY,
-    prefEntries = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        activity.resources.getStringArray(R.array.themes_preference_entries)
-    } else {
-        activity.resources.getStringArray(R.array.themes_preference_entries_p)
-    },
-    prefEntryValues = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        activity.resources.getStringArray(R.array.themes_preference_entry_values)
-    } else {
-        activity.resources.getStringArray(R.array.themes_preference_entry_values_p)
-    },
-    prefIcons = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        listOf(
-            ContextCompat.getDrawable(activity, R.drawable.light_mode),
-            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
-            ContextCompat.getDrawable(activity, R.drawable.android)
-        )
-    } else {
-        listOf(
-            ContextCompat.getDrawable(activity, R.drawable.light_mode),
-            ContextCompat.getDrawable(activity, R.drawable.dark_mode)
-        )
-    }
+    prefEntries = activity.getLightDarkModeEntries(),
+    prefEntryValues = activity.getLightDarkModeEntryValues(),
+    prefIcons = activity.getLightDarkModeIcons()
 )
 
 /**
@@ -312,7 +297,7 @@ fun PreferenceGroup.addThemeColorPreferenceWithDefaultSettings(
     preferenceSupplier,
     valueFunction = { it.getColorInt(context) },
     prefKey = DefaultThemingPreferences.PRIMARY_COLOR_KEY,
-    prefColors = activity.resources.getIntArray(R.array.theme_color_preference_available_colors)
+    prefColors = activity.getThemeColorColors()
 )
 
 /**

@@ -2,6 +2,7 @@ package com.sixtyninefourtwenty.theming.preferences.internal
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
@@ -69,3 +70,31 @@ internal fun PredefinedColorPickerPreference.setupCommon(
         true
     }
 }
+
+internal fun Context.getLightDarkModeEntries() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    resources.getStringArray(R.array.themes_preference_entries)
+} else {
+    resources.getStringArray(R.array.themes_preference_entries_p)
+}
+
+internal fun Context.getLightDarkModeEntryValues() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    resources.getStringArray(R.array.themes_preference_entry_values)
+} else {
+    resources.getStringArray(R.array.themes_preference_entry_values_p)
+}
+
+internal fun Context.getLightDarkModeIcons() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    listOf(
+        ContextCompat.getDrawable(this, R.drawable.light_mode),
+        ContextCompat.getDrawable(this, R.drawable.dark_mode),
+        ContextCompat.getDrawable(this, R.drawable.android)
+    )
+} else {
+    listOf(
+        ContextCompat.getDrawable(this, R.drawable.light_mode),
+        ContextCompat.getDrawable(this, R.drawable.dark_mode)
+    )
+}
+
+internal fun Context.getThemeColorColors() =
+    resources.getIntArray(R.array.theme_color_preference_available_colors)
