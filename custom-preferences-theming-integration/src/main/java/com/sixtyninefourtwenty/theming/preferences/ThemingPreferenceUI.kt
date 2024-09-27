@@ -154,12 +154,12 @@ fun PreferenceGroup.addLightDarkModePreference(
             entryValues = prefEntryValues.toList(),
             icons = prefIcons
         )
-        setIcon(when (preferenceSupplier.lightDarkMode) {
-            LightDarkMode.LIGHT -> R.drawable.light_mode
-            LightDarkMode.DARK -> R.drawable.dark_mode
-            LightDarkMode.BATTERY -> R.drawable.battery_saver
-            LightDarkMode.SYSTEM -> R.drawable.android
-        })
+        icon = when (preferenceSupplier.lightDarkMode) {
+            LightDarkMode.LIGHT -> ContextCompat.getDrawable(activity, R.drawable.light_mode)
+            LightDarkMode.DARK -> ContextCompat.getDrawable(activity, R.drawable.dark_mode)
+            LightDarkMode.SYSTEM -> ContextCompat.getDrawable(activity, R.drawable.android)
+            else -> null
+        }
         setDefaultValue(valueFunction(preferenceSupplier.lightDarkMode))
         setOnPreferenceChangeListener { _, _ ->
             activity.recreate()
@@ -195,14 +195,12 @@ fun PreferenceGroup.addLightDarkModePreferenceWithDefaultSettings(
         listOf(
             ContextCompat.getDrawable(activity, R.drawable.light_mode),
             ContextCompat.getDrawable(activity, R.drawable.dark_mode),
-            ContextCompat.getDrawable(activity, R.drawable.battery_saver),
             ContextCompat.getDrawable(activity, R.drawable.android)
         )
     } else {
         listOf(
             ContextCompat.getDrawable(activity, R.drawable.light_mode),
-            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
-            ContextCompat.getDrawable(activity, R.drawable.battery_saver)
+            ContextCompat.getDrawable(activity, R.drawable.dark_mode)
         )
     }
 )

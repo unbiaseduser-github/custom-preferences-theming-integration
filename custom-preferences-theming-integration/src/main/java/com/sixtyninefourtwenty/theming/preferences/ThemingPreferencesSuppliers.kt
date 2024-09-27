@@ -39,6 +39,14 @@ fun copyFromDefaultThemingPreferences(
     copyUseM3CustomColorThemeOnAndroid12.accept(def.useM3CustomColorThemeOnAndroid12)
 }
 
+private fun getDefaultLightDarkModeValue(): String {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        LightDarkMode.SYSTEM.prefValue
+    } else {
+        LightDarkMode.LIGHT.prefValue
+    }
+}
+
 /**
  * Create a [ThemingPreferencesSupplierWithoutM3CustomColor] that uses the library's internal resources.
  * When this is used in [Activity.applyThemingWithoutM3CustomColors], you must use
@@ -46,6 +54,18 @@ fun copyFromDefaultThemingPreferences(
  */
 @JvmName("createWithoutM3CustomColor")
 fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: Context) = object : ThemingPreferencesSupplierWithoutM3CustomColor {
+
+    init {
+        if (getString(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY, null) == LightDarkMode.BATTERY.prefValue) {
+            edit {
+                putString(
+                    DefaultThemingPreferences.LIGHT_DARK_MODE_KEY,
+                    getDefaultLightDarkModeValue()
+                )
+            }
+        }
+    }
+
     override var md3: Boolean
         get() = getBoolean(
             DefaultThemingPreferences.MD3_KEY,
@@ -106,6 +126,15 @@ fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : 
  */
 @JvmName("createWithoutM3CustomColor")
 fun PreferenceDataStore.toThemingPreferencesSupplierWithoutM3CustomColor(context: Context) = object : ThemingPreferencesSupplierWithoutM3CustomColor {
+
+    init {
+        if (getString(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY, null) == LightDarkMode.BATTERY.prefValue) {
+            putString(
+                DefaultThemingPreferences.LIGHT_DARK_MODE_KEY,
+                getDefaultLightDarkModeValue()
+            )
+        }
+    }
 
     override var md3: Boolean
         get() = getBoolean(DefaultThemingPreferences.MD3_KEY, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)

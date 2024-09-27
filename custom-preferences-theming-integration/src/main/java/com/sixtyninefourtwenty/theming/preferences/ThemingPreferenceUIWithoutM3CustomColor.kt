@@ -129,14 +129,12 @@ fun PreferenceGroup.addLightDarkModePreferenceWithoutM3CustomColorWithDefaultSet
         listOf(
             ContextCompat.getDrawable(activity, R.drawable.light_mode),
             ContextCompat.getDrawable(activity, R.drawable.dark_mode),
-            ContextCompat.getDrawable(activity, R.drawable.battery_saver),
             ContextCompat.getDrawable(activity, R.drawable.android)
         )
     } else {
         listOf(
             ContextCompat.getDrawable(activity, R.drawable.light_mode),
-            ContextCompat.getDrawable(activity, R.drawable.dark_mode),
-            ContextCompat.getDrawable(activity, R.drawable.battery_saver)
+            ContextCompat.getDrawable(activity, R.drawable.dark_mode)
         )
     }
 )
