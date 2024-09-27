@@ -201,7 +201,6 @@
 
     <style name="AlertDialogTheme.Material3" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="dialogCornerRadius" tools:ignore="PrivateResource">@dimen/m3_alert_dialog_corner_size</item>
-        <item name="android:background">?attr/colorSurfaceContainerHigh</item>
     </style>
 
 </resources>
