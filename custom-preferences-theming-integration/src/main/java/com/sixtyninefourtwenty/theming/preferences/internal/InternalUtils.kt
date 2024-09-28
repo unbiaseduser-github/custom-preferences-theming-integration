@@ -64,7 +64,7 @@ internal fun PredefinedColorPickerPreference.setupCommon(
     title = activity.getString(R.string.color)
     setIcon(R.drawable.palette)
     setAvailableColors(prefColors)
-    setDefaultValue("#${Integer.toHexString(color)}")
+    setDefaultValue(color)
     setOnPreferenceChangeListener { _, _ ->
         activity.recreate()
         true
