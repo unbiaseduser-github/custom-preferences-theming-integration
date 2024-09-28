@@ -46,6 +46,12 @@ private fun getDefaultLightDarkModeValue(): String {
     }
 }
 
+private fun getDefaultMd3Value() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+
+private fun Context.getDefaultThemeColorValue() = ThemeColor.BLUE.getColorInt(this)
+
+private fun getDefaultUseM3CustomColorThemeOnAndroid12Value() = false
+
 /**
  * Create a [ThemingPreferencesSupplierWithoutM3CustomColor] that uses the library's internal resources.
  * When this is used in [Activity.applyThemingWithoutM3CustomColors], you must use
@@ -68,7 +74,7 @@ fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: 
     override var md3: Boolean
         get() = getBoolean(
             DefaultThemingPreferences.MD3_KEY,
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+            getDefaultMd3Value()
         )
         set(value) {
             edit { putBoolean(DefaultThemingPreferences.MD3_KEY, value) }
@@ -76,7 +82,7 @@ fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: 
 
     override var themeColor: ThemeColor
         get() = ThemeColor.entries.first { it.getColorInt(context) == getInt(
-            DefaultThemingPreferences.PRIMARY_COLOR_KEY, ThemeColor.BLUE.getColorInt(context)
+            DefaultThemingPreferences.PRIMARY_COLOR_KEY, context.getDefaultThemeColorValue()
         ) }
         set(value) {
             edit { putInt(DefaultThemingPreferences.PRIMARY_COLOR_KEY, value.getColorInt(context)) }
@@ -85,11 +91,7 @@ fun SharedPreferences.toThemingPreferencesSupplierWithoutM3CustomColor(context: 
     override var lightDarkMode: LightDarkMode
         get() = LightDarkMode.entries.first { it.prefValue == getString(
             DefaultThemingPreferences.LIGHT_DARK_MODE_KEY,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                LightDarkMode.SYSTEM.prefValue
-            } else {
-                LightDarkMode.LIGHT.prefValue
-            })
+            getDefaultLightDarkModeValue())
         }
         set(value) {
             edit { putString(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY, value.prefValue) }
@@ -113,7 +115,7 @@ fun SharedPreferences.toThemingPreferencesSupplier(context: Context) = object : 
     override var lightDarkMode: LightDarkMode by delegateWithoutM3CustomColor::lightDarkMode
 
     override var useM3CustomColorThemeOnAndroid12: Boolean
-        get() = getBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, false)
+        get() = getBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, getDefaultUseM3CustomColorThemeOnAndroid12Value())
         set(value) {
             edit { putBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, value) }
         }
@@ -136,14 +138,14 @@ fun PreferenceDataStore.toThemingPreferencesSupplierWithoutM3CustomColor(context
     }
 
     override var md3: Boolean
-        get() = getBoolean(DefaultThemingPreferences.MD3_KEY, Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+        get() = getBoolean(DefaultThemingPreferences.MD3_KEY, getDefaultMd3Value())
         set(value) = putBoolean(DefaultThemingPreferences.MD3_KEY, value)
 
     override var themeColor: ThemeColor
         get() = ThemeColor.entries.first {
             it.getColorInt(context) == getInt(
                 DefaultThemingPreferences.PRIMARY_COLOR_KEY,
-                ThemeColor.BLUE.getColorInt(context)
+                context.getDefaultThemeColorValue()
             )
         }
         set(value) = putInt(DefaultThemingPreferences.PRIMARY_COLOR_KEY, value.getColorInt(context))
@@ -151,11 +153,7 @@ fun PreferenceDataStore.toThemingPreferencesSupplierWithoutM3CustomColor(context
     override var lightDarkMode: LightDarkMode
         get() = LightDarkMode.entries.first { it.prefValue == getString(
             DefaultThemingPreferences.LIGHT_DARK_MODE_KEY,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                LightDarkMode.SYSTEM.prefValue
-            } else {
-                LightDarkMode.LIGHT.prefValue
-            })
+            getDefaultLightDarkModeValue())
         }
         set(value) = putString(DefaultThemingPreferences.LIGHT_DARK_MODE_KEY, value.prefValue)
 
@@ -176,7 +174,7 @@ fun PreferenceDataStore.toThemingPreferencesSupplier(context: Context) = object 
     override var lightDarkMode: LightDarkMode by delegateWithoutM3CustomColor::lightDarkMode
 
     override var useM3CustomColorThemeOnAndroid12: Boolean
-        get() = getBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, false)
+        get() = getBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, getDefaultUseM3CustomColorThemeOnAndroid12Value())
         set(value) {
             putBoolean(DefaultThemingPreferences.USE_MD3_CUSTOM_COLORS_ON_ANDROID_12, value)
         }
