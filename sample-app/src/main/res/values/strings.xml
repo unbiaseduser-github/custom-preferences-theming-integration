@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Theming Sample App</string>
+    <string name="app_name">custom-preferences-theming-integration Sample App</string>
     <string name="md3">Material Design 3</string>
     <string name="theme">Theme</string>
     <string name="primary_color">Primary color</string>
