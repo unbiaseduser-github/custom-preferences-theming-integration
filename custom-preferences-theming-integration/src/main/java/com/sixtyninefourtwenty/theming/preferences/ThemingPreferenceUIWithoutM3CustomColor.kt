@@ -132,8 +132,8 @@ fun PreferenceGroup.addThemeColorPreferenceWithoutM3CustomColor(
     valueFunction: (ThemeColor) -> Int,
     prefKey: String,
     @ColorInt prefColors: IntArray
-) {
-    addPreference(PredefinedColorPickerPreference(activity).apply {
+): PredefinedColorPickerPreference {
+    return PredefinedColorPickerPreference(activity).apply {
         setupCommon(valueFunction(preferenceSupplier.themeColor), activity, prefKey, prefColors)
 
         if (preferenceSupplier.md3) {
@@ -142,7 +142,7 @@ fun PreferenceGroup.addThemeColorPreferenceWithoutM3CustomColor(
         } else {
             summaryProvider = ThemeColorPreferenceSummaryProvider
         }
-    })
+    }.also { addPreference(it) }
 }
 
 /**

@@ -84,14 +84,15 @@ fun PreferenceGroup.addThemingPreferences(
  * If your app only supports M2 and M3 dynamic colors, do *not* use this - use [addM3PreferenceWithoutM3CustomColor]
  * instead. Calling this in the above scenario results in undefined behavior.
  * @param prefKey Key to use for the preference.
+ * @return the preference that was added
  * @see addM3PreferenceWithDefaultSettings
  */
 fun PreferenceGroup.addM3Preference(
     activity: Activity,
     preferenceSupplier: ImmutableThemingPreferencesSupplierWithoutM3CustomColor,
     prefKey: String
-) {
-    addPreference(SwitchPreferenceCompat(activity).apply {
+): SwitchPreferenceCompat {
+    return SwitchPreferenceCompat(activity).apply {
         key = prefKey
         title = activity.getString(R.string.md3)
         summary = activity.getString(R.string.md3_pref_summary)
@@ -100,7 +101,7 @@ fun PreferenceGroup.addM3Preference(
             activity.recreate()
             true
         }
-    })
+    }.also { addPreference(it) }
 }
 
 /**
@@ -138,6 +139,7 @@ fun PreferenceGroup.getM3PreferenceWithDefaultSettings(): SwitchPreferenceCompat
  * for each [LightDarkMode] value.
  * @param prefEntryValues Custom entry values used by the preference. This array must have one value
  * for each [LightDarkMode] value, in order.
+ * @return the preference that was added
  * @see addLightDarkModePreferenceWithDefaultSettings
  */
 @JvmOverloads
@@ -149,8 +151,8 @@ fun PreferenceGroup.addLightDarkModePreference(
     prefEntries: Array<out CharSequence>,
     prefEntryValues: Array<out CharSequence>,
     prefIcons: List<Drawable?>? = null
-) {
-    addPreference(ToggleGroupPreference(activity).apply {
+): ToggleGroupPreference {
+    return ToggleGroupPreference(activity).apply {
         key = prefKey
         title = activity.getString(R.string.theme)
         setEntries(
@@ -169,7 +171,7 @@ fun PreferenceGroup.addLightDarkModePreference(
             activity.recreate()
             true
         }
-    })
+    }.also { addPreference(it) }
 }
 
 /**
@@ -202,14 +204,15 @@ fun PreferenceGroup.getLightDarkModePreferenceWithDefaultSettings(): ToggleGroup
 /**
  * Adds a [SwitchPreferenceCompat].
  * @param prefKey Key to use for the preference.
+ * @return the preference that was added
  * @see addUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSettings
  */
 fun PreferenceGroup.addUseMD3CustomColorsThemeOnAndroid12Preference(
     activity: Activity,
     preferenceSupplier: ImmutableThemingPreferencesSupplier,
     prefKey: String
-) {
-    addPreference(SwitchPreferenceCompat(activity).apply {
+): SwitchPreferenceCompat {
+    return SwitchPreferenceCompat(activity).apply {
         key = prefKey
         title = activity.getString(R.string.custom_colors_m3)
         setDefaultValue(preferenceSupplier.useM3CustomColorThemeOnAndroid12)
@@ -224,7 +227,7 @@ fun PreferenceGroup.addUseMD3CustomColorsThemeOnAndroid12Preference(
             isEnabled = false
             summary = activity.getString(R.string.md3_not_applied)
         }
-    })
+    }.also { addPreference(it) }
 }
 
 /**
@@ -259,6 +262,7 @@ fun PreferenceGroup.getUseMD3CustomColorsThemeOnAndroid12PreferenceWithDefaultSe
  * @param prefKey Key to use for the preference.
  * @param prefColors Custom color values used by the preference. This array must have one color
  * int for each [ThemeColor] value.
+ * @return the preference that was added
  * @see addThemeColorPreferenceWithDefaultSettings
  */
 fun PreferenceGroup.addThemeColorPreference(
@@ -267,8 +271,8 @@ fun PreferenceGroup.addThemeColorPreference(
     valueFunction: (ThemeColor) -> Int,
     prefKey: String,
     @ColorInt prefColors: IntArray
-) {
-    addPreference(PredefinedColorPickerPreference(activity).apply {
+): PredefinedColorPickerPreference {
+    return PredefinedColorPickerPreference(activity).apply {
         setupCommon(valueFunction(preferenceSupplier.themeColor), activity, prefKey, prefColors)
 
         if (!preferenceSupplier.useM3CustomColorThemeOnAndroid12) {
@@ -281,7 +285,7 @@ fun PreferenceGroup.addThemeColorPreference(
         } else {
             summaryProvider = ThemeColorPreferenceSummaryProvider
         }
-    })
+    }.also { addPreference(it) }
 }
 
 /**
