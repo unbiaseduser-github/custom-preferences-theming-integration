@@ -7,7 +7,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
-import android.util.Log
 import androidx.core.content.edit
 import androidx.core.util.Consumer
 import androidx.preference.PreferenceDataStore
@@ -142,11 +141,10 @@ fun PreferenceDataStore.toThemingPreferencesSupplierWithoutM3CustomColor(context
 
     override var themeColor: ThemeColor
         get() = ThemeColor.entries.first {
-            Log.d("themeColor", it.getColorInt(context).toString())
-            Log.d("themeColor", getInt(
-                DefaultThemingPreferences.PRIMARY_COLOR_KEY, ThemeColor.BLUE.getColorInt(context)).toString())
             it.getColorInt(context) == getInt(
-            DefaultThemingPreferences.PRIMARY_COLOR_KEY, ThemeColor.BLUE.getColorInt(context))
+                DefaultThemingPreferences.PRIMARY_COLOR_KEY,
+                ThemeColor.BLUE.getColorInt(context)
+            )
         }
         set(value) = putInt(DefaultThemingPreferences.PRIMARY_COLOR_KEY, value.getColorInt(context))
 
