@@ -62,6 +62,7 @@ internal fun PredefinedColorPickerPreference.setupCommon(
 ) {
     key = prefKey
     title = activity.getString(R.string.color)
+    dialogTitle = activity.getString(R.string.color)
     setIcon(R.drawable.palette)
     setAvailableColors(prefColors)
     setDefaultValue(color)
